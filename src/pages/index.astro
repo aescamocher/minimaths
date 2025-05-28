@@ -12,13 +12,25 @@ import '../styles/global.css';
   <body>
     <Header />
     <main class="container">
-      <h2>Choisis un thème</h2>
+      <section style="text-align: center;">
+  <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">📚 Thèmes</h3>
+</section>
+
 <ThemeButton name="Angles" link="/angles" />
 <ThemeButton name="Fractions" link="/fractions" />
 <ThemeButton name="Histoire des Maths" link="/histoire" />
 <ThemeButton name="Puissances" link="/puissances" />
 <ThemeButton name="Statistiques" link="/statistiques" />
-     
+<!-- Séparation visuelle -->
+<hr style="margin: 3rem auto 2rem; border: none; height: 2px; background-color: #ccc; width: 60%;" />
+
+<!-- Section Ressources -->
+<section style="text-align: center;">
+  <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">📁 Ressources</h3>
+  <ThemeButton name="Sites utiles" link="/ressources/sites-utiles" />
+</section>
+
+    
 
 <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: gray;">
   <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">

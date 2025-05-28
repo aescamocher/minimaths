@@ -1,0 +1,55 @@
+---
+import Header from '../../components/Header.astro';
+import '../../styles/global.css';
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Sites utiles</title>
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <h2>📁 Sites utiles</h2>
+      <p style="text-align: center; margin-bottom: 2rem;">
+        Voici une petite liste de sites géniaux, conçus par des passionnés de maths.
+      </p>
+
+      <!-- APMEP -->
+      <div style="display: flex; align-items: center; margin-bottom: 1.5rem; background: #f9f9f9; padding: 1rem; border-radius: 12px; box-shadow: 0 0 5px rgba(0,0,0,0.05); max-width: 600px; margin-left: auto; margin-right: auto;">
+        <a href="https://www.apmep.fr" target="_blank" rel="noopener noreferrer">
+          <img src="/images/apmep.png" alt="APMEP" style="width: 80px; height: 80px; object-fit: contain; margin-right: 1rem; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+        </a>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">APMEP</h3>
+          <p style="margin: 0.3rem 0; color: #555;">L’association des professeurs de maths : articles et sujets brevets corrigés.</p>
+        </div>
+      </div>
+
+      <!-- Mathix -->
+      <div style="display: flex; align-items: center; margin-bottom: 1.5rem; background: #f9f9f9; padding: 1rem; border-radius: 12px; box-shadow: 0 0 5px rgba(0,0,0,0.05); max-width: 600px; margin-left: auto; margin-right: auto;">
+        <a href="https://mathix.org" target="_blank" rel="noopener noreferrer">
+          <img src="/images/mathix.png" alt="Mathix" style="width: 80px; height: 80px; object-fit: contain; margin-right: 1rem; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+        </a>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Mathix</h3>
+          <p style="margin: 0.3rem 0; color: #555;">Des QCM, jeux et outils interactifs créés par des passionnés.</p>
+        </div>
+      </div>
+
+      <!-- Sésamath -->
+      <div style="display: flex; align-items: center; margin-bottom: 2rem; background: #f9f9f9; padding: 1rem; border-radius: 12px; box-shadow: 0 0 5px rgba(0,0,0,0.05); max-width: 600px; margin-left: auto; margin-right: auto;">
+        <a href="https://www.sesamath.net/" target="_blank" rel="noopener noreferrer">
+          <img src="/images/sesamath.png" alt="Sésamath" style="width: 80px; height: 80px; object-fit: contain; margin-right: 1rem; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+        </a>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Sésamath</h3>
+          <p style="margin: 0.3rem 0; color: #555;">Des manuels et exercices en ligne pour s'entraîner.</p>
+        </div>
+      </div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+  </body>
+</html>
