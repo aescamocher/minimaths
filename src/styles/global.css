@@ -96,3 +96,29 @@ h3 {
   text-align: center;
   font-size: 1.1rem;
 }
+.boxed {
+  background-color: #fdf6e3;
+  border-left: 6px solid #ffcc00;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.formula {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.formula .highlight {
+  color: #ffcc00;
+  font-weight: 900;
+}
+
+.conditions {
+  text-align: center;
+  font-size: 0.9rem;
+  color: gray;
+}
