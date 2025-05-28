@@ -122,3 +122,26 @@ h3 {
   font-size: 0.9rem;
   color: gray;
 }
+/* Styles .boxed par défaut (mode clair) */
+.boxed {
+  background-color: #fdf6e3;
+  border-left: 6px solid #ffcc00;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  color: #111;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  .boxed {
+    background-color: #333;
+    border-left: 6px solid #ffcc00;
+    color: #fdf6e3;
+  }
+
+  .conditions {
+    color: #ccc;
+  }
+}
