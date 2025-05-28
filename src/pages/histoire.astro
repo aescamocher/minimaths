@@ -1,0 +1,68 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Histoire des mathématiques</title>
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Histoire des Mathématiques</h2>
+      <p>Quelques grandes figures des mathématiques :</p>
+
+      <!-- Thalès -->
+      <div class="boxed">
+        <p class="formula">Thalès</p>
+        <p class="conditions">env. 625 – 545 av. J.-C. · Milet (Asie Mineure)</p>
+      </div>
+      <div class="video">
+        <iframe
+          width="100%"
+          height="215"
+          src="https://www.youtube.com/embed/q1PAbQAFllo"
+          title="Vidéo Thalès"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Hypatie -->
+      <div class="boxed">
+        <p class="formula">Hypatie </p>
+        <p class="conditions">env. 360 – 415 · Alexandrie (Égypte)</p>
+      </div>
+      <div class="video">
+        <iframe
+          width="100%"
+          height="215"
+          src="https://www.youtube.com/embed/DwIBFstrptg"
+          title="Vidéo Hypatie"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Sophie Germain -->
+      <div class="boxed">
+        <p class="formula">Sophie Germain</p>
+        <p class="conditions">1776 – 1831 · Paris (France)</p>
+      </div>
+      <div class="video">
+        <iframe
+          width="100%"
+          height="215"
+          src="https://www.youtube.com/embed/85l-RLSW3Kg"
+          title="Vidéo Sophie Germain"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+  </body>
+</html>
