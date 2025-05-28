@@ -1,0 +1,98 @@
+:root {
+  --bg: #f9f9f9;
+  --text: #111;
+  --accent: #4f46e5;
+  --accent-light: #eef0ff;
+  --card-bg: white;
+  --card-border: #ccc;
+  --danger: #d90429;
+  --success: #198754;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111;
+    --text: #f0f0f0;
+    --accent: #818cf8;
+    --accent-light: #1e1e2e;
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  margin-bottom: 0.2em;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin: 1.5em 0 0.5em;
+  color: var(--accent);
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-top: 2em;
+  border-left: 5px solid var(--accent);
+  padding-left: 0.5em;
+  background: var(--accent-light);
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+.container {
+  padding: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.definition {
+  background: var(--accent-light);
+  padding: 0.8em 1em;
+  border-left: 4px solid var(--accent);
+  margin: 1em 0;
+  border-radius: 5px;
+}
+
+.video {
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 2em;
+  padding: 0.8em 1.4em;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #3730a3;
+}
+.boxed {
+  background: var(--accent-light);
+  border: 2px solid var(--accent);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1.5em 0;
+  text-align: center;
+  font-size: 1.1rem;
+}

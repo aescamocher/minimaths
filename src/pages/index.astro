@@ -1,16 +1,21 @@
 ---
-
+import Header from '../components/Header.astro';
+import ThemeButton from '../components/ThemeButton.astro';
+import '../styles/global.css';
 ---
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>MiniMaths</title>
+</head>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Choisis un thème</h2>
+<ThemeButton name="Fractions" link="/fractions" />
+<ThemeButton name="Puissances" link="/puissances" />
+<ThemeButton name="Statistiques" link="/statistiques" />
+    </main>
+  </body>
 </html>
