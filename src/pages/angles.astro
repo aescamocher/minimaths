@@ -15,6 +15,62 @@ import '../styles/global.css';
 
       <!-- Partie 1 -->
       <h3>1. Vocabulaire et nature des angles</h3>
+<style>
+  .definition-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .definition-box {
+    flex: 1;
+    min-width: 260px;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .definition-box span {
+    font-weight: bold;
+  }
+
+  .mot-yellow {
+    color: #f1c40f;
+  }
+
+  .mot-blue {
+    color: #3498db;
+  }
+
+  .schema-box {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+  }
+
+  .schema-box img {
+    max-width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<div class="definition-container">
+  <div class="boxed definition-box">
+    Un <span class="mot-yellow">angle</span> est l'<span class="mot-yellow">ouverture</span>
+    délimitée par <span class="mot-blue">deux demi-droites de même origine</span>.
+  </div>
+  <div class="schema-box">
+    <img src="/images/schema-angle.jpeg" alt="Schéma angle" />
+  </div>
+</div>
+
+
+
       <div class="video">
         <iframe
           width="100%"
