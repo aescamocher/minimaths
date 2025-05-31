@@ -68,8 +68,122 @@ import '../styles/global.css';
     <img src="/images/schema-angle.jpeg" alt="Schéma angle" />
   </div>
 </div>
+<style>
+  .nature-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .nature-list {
+    flex: 0 0 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .nature-item {
+    background: #1c1c1c;
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .nature-item:hover,
+  .nature-item.selected {
+    background: #f39c12;
+    font-weight: bold;
+    transform: scale(1.03);
+  }
+
+  .nature-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    min-height: 160px;
+  }
+
+.nature-image img {
+  max-width: 100%;
+  max-height: 320px;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  margin: auto;
+}
 
 
+  .nature-image img.active {
+    display: block;
+  }
+.nature-placeholder {
+  color: #ccc;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-style: italic;
+}
+
+</style>
+
+<div class="nature-section">
+  <div class="nature-list">
+    <div class="nature-item" data-nom="nul">Angle nul</div>
+    <div class="nature-item" data-nom="aigu">Angle aigu</div>
+    <div class="nature-item" data-nom="droit">Angle droit</div>
+    <div class="nature-item" data-nom="obtus">Angle obtus</div>
+    <div class="nature-item" data-nom="plat">Angle plat</div>
+    <div class="nature-item" data-nom="rentrant">Angle rentrant</div>
+    <div class="nature-item" data-nom="plein">Angle plein</div>
+  </div>
+
+  <div class="nature-image" id="nature-display">
+    <p class="nature-placeholder" id="nature-text">Clique sur un angle pour afficher son schéma</p>
+    <img id="angle-nul" src="/images/nul.jpeg" alt="Angle nul" />
+    <img id="angle-aigu" src="/images/aigu.jpeg" alt="Angle aigu" />
+    <img id="angle-droit" src="/images/droit.jpeg" alt="Angle droit" />
+    <img id="angle-obtus" src="/images/obtus.jpeg" alt="Angle obtus" />
+    <img id="angle-plat" src="/images/plat.jpeg" alt="Angle plat" />
+    <img id="angle-rentrant" src="/images/rentrant.jpeg" alt="Angle rentrant" />
+    <img id="angle-plein" src="/images/plein.jpeg" alt="Angle plein" />
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.nature-item');
+    const images = document.querySelectorAll('.nature-image img');
+    const placeholder = document.getElementById('nature-text');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const nom = item.dataset.nom;
+
+        // Cacher toutes les images
+        images.forEach(img => img.classList.remove('active'));
+
+        // Afficher l'image correspondante
+        const imageToShow = document.getElementById('angle-' + nom);
+        if (imageToShow) {
+          imageToShow.classList.add('active');
+          placeholder.style.display = 'none';
+        }
+
+        // Mettre à jour la sélection
+        items.forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+      });
+    });
+  });
+</script>
 
       <div class="video">
         <iframe
