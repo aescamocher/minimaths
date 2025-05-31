@@ -6,61 +6,220 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <title>MiniMaths – Statistiques</title>
+
+   <style>
+  .formula {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 2rem 0 1rem;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .fraction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+  }
+
+  .term {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 0.3rem;
+    cursor: pointer;
+    background-color: var(--term-bg);
+    color: var(--term-text);
+    border: 1px solid var(--term-border);
+    border-radius: 8px;
+    padding: 0.2rem 0.6rem;
+    min-width: 2.5rem;
+  }
+
+  .term:hover {
+    background-color: var(--term-hover);
+  }
+
+  .definition {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--def-bg);
+    color: var(--def-text);
+    border: 1px solid var(--def-border);
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-top: 0.4rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .term.active .definition {
+    display: block;
+  }
+
+  :root {
+    --term-bg: #d0e8ff;
+    --term-hover: #a6d4ff;
+    --term-text: #003366;
+    --term-border: #7ab8e6;
+
+    --def-bg: #f0f0f0;
+    --def-border: #ccc;
+    --def-text: #222;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --term-bg: #1f3b50;
+      --term-hover: #2b5677;
+      --term-text: #ffffff;
+      --term-border: #3a6787;
+
+      --def-bg: #2a2a2a;
+      --def-border: #444;
+      --def-text: #f5f5f5;
+    }
+  }
+</style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".term").forEach(term => {
+          term.addEventListener("click", e => {
+            e.stopPropagation();
+            document.querySelectorAll(".term").forEach(t => {
+              if (t !== term) t.classList.remove("active");
+            });
+            term.classList.toggle("active");
+          });
+        });
+        document.body.addEventListener("click", () => {
+          document.querySelectorAll(".term").forEach(t => t.classList.remove("active"));
+        });
+      });
+    </script>
   </head>
+
   <body>
     <Header />
     <main class="container">
       <h2>Statistiques</h2>
 
-      <!-- Partie 1 -->
       <h3>1. Fréquence</h3>
+      <div class="formula">
+        <span class="term">
+          Fréquence
+          <span class="definition">Proportion de quelquechose.</span>
+        </span>
+        =
+        <span class="fraction">
+          <span class="term">
+            effectif du caractère
+            <span class="definition">Combien il y a de ce que j'étudie.</span>
+          </span>
+          <span class="term">
+            effectif total
+            <span class="definition">Combien il y a en tout.</span>
+          </span>
+        </span>
+      </div>
 
+      <h3>2. Moyenne - 5e</h3>
+      <div class="formula">
+        <span class="term">
+          Moyenne
+          <span class="definition">Si on répartit tout équitablement, c'est ce que tout le monde obtient.</span>
+        </span>
+        =
+        <span class="fraction">
+          <span class="term">
+            somme des valeurs
+            <span class="definition">Total obtenu en additionnant toutes les valeurs.</span>
+          </span>
+          <span class="term">
+            effectif total
+            <span class="definition">Combien il y a en tout.</span>
+          </span>
+        </span>
+      </div>
 
-      <!-- Partie 2 -->
-      <h3>2. Moyenne - 5e </h3>
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/c1at6v4Fi9s"
+          title="Moyenne"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-<div class="video">
-  <iframe
-    width="100%"
-    height="215"
-    src="https://www.youtube.com/embed/c1at6v4Fi9s"
-    title="Moyenne"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
+      <h3>3. Médiane - 4e</h3>
+      <div class="formula">
+        <span class="term">
+          Médiane
+          <span class="definition">Il y a autant de valeurs avant qu'après.</span>
+        </span>
+        =
+        <span class="term">
+          valeur centrale
+          <span class="definition">Valeur située au milieu.</span>
+        </span>
+        d’une
+        <span class="term">
+          série ordonnée
+          <span class="definition">Données classées dans l’ordre croissant ou décroissant.</span>
+        </span>
+      </div>
 
-      <!-- Partie 3 -->
-      <h3>3. Médiane - 4e </h3>
-<div class="video">
-  <iframe
-    width="100%"
-    height="215"
-    src="https://www.youtube.com/embed/V3d9JBUO2nw"
-    title="Médiane"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/V3d9JBUO2nw"
+          title="Médiane"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-
-      <!-- Partie 4 -->
       <h3>4. Étendue - 3e</h3>
+      <div class="formula">
+        <span class="term">
+          Étendue
+          <span class="definition">Écart entre les valeurs extrêmes, plus il est grand plus la série est dispersée.</span>
+        </span>
+        =
+        <span class="term">
+          maximum
+          <span class="definition">La valeur la plus élevée.</span>
+        </span>
+        -
+        <span class="term">
+         minimum
+          <span class="definition">La valeur la plus petite.</span>
+        </span>
+      </div>
 
-<div class="video">
-  <iframe
-    width="100%"
-    height="215"
-    src="https://www.youtube.com/embed/kWjLBn4nFNA"
-    title="Étendue"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/kWjLBn4nFNA"
+          title="Étendue"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-      <!-- Partie 5 -->
       <h3>5. QCM Bilan - 3e</h3>
-
       <div class="boxed">
         <p style="text-align: center;">
           Teste tes connaissances sur les statistiques avec ce QCM rapide.
