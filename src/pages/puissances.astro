@@ -17,22 +17,98 @@ import '../styles/global.css';
       <h3>1. Définition - Cycle4</h3>
       <p>Une puissance permet d’écrire une multiplication répétée du même nombre.</p>
 
-      <div class="boxed">
-        <p class="formula">
-          a<sup>n</sup> = a <span class="highlight">×</span> a <span class="highlight">×</span> … <span class="highlight">×</span> a (n fois)
-        </p>
-        <p class="conditions">
-          avec <strong>a</strong> un nombre relatif et <strong>n</strong> un entier naturel
-        </p>
-      </div>
+      <style>
+        .nature-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
 
-      <div class="boxed">
-        <p class="formula">
-          a<sup>−n</sup> = 1 / a<sup>n</sup>
-        </p>
-        <p class="conditions">
-          avec <strong>a ≠ 0</strong> et <strong>n</strong> un entier naturel
-        </p>
+        .nature-list {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .nature-item {
+          background: #1c1c1c;
+          color: white;
+          padding: 0.6rem 1rem;
+          border-radius: 10px;
+          cursor: pointer;
+          text-align: center;
+          font-size: 1rem;
+          transition: background 0.3s, transform 0.2s;
+        }
+
+        .nature-item:hover,
+        .nature-item.selected {
+          background: #f39c12;
+          font-weight: bold;
+          transform: scale(1.05);
+        }
+
+        .nature-image {
+          text-align: center;
+          position: relative;
+          min-height: 240px;
+          max-width: 100%;
+        }
+
+        .nature-image img {
+          max-width: 100%;
+          max-height: 340px;
+          width: auto;
+          height: auto;
+          border-radius: 12px;
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+          display: none;
+          margin: auto;
+        }
+
+        .nature-image img.active {
+          display: block;
+        }
+
+        .nature-placeholder {
+          color: #ccc;
+          font-size: 1.2rem;
+          text-align: center;
+          padding: 1.5rem 1rem;
+          font-style: italic;
+        }
+
+        .image-caption {
+          margin-top: 0.5rem;
+          font-size: 0.9rem;
+          color: #aaa;
+          font-style: italic;
+          text-align: center;
+          display: none;
+        }
+
+        .image-caption.active {
+          display: block;
+        }
+      </style>
+
+      <div class="nature-section" id="section-exposants">
+        <div class="nature-list">
+          <div class="nature-item" data-nom="positif">Exposant positif</div>
+          <div class="nature-item" data-nom="negatif">Exposant négatif</div>
+        </div>
+
+        <div class="nature-image">
+          <p class="nature-placeholder" id="nature-text-1">Clique sur un mot pour afficher l’image correspondante</p>
+          <img id="img-positif" src="/images/exposant-positif.jpeg" alt="Exposant positif" />
+          <p id="caption-positif" class="image-caption">avec <strong>a</strong> un nombre relatif et <strong>n</strong> un entier naturel ≥ 2</p>
+
+          <img id="img-negatif" src="/images/exposant-negatif.jpeg" alt="Exposant négatif" />
+          <p id="caption-negatif" class="image-caption">avec <strong>a</strong> un nombre relatif et <strong>n</strong> un entier naturel ≥ 2</p>
+        </div>
       </div>
 
       <div class="video">
@@ -44,123 +120,38 @@ import '../styles/global.css';
         </iframe>
       </div>
 
-     <!-- Partie 2 -->
-<h3>2. Calculs - Cycle4</h3>
-<p>Voici les règles à connaître :</p>
+      <!-- Partie 2 -->
+      <h3>2. Calculs - Cycle4</h3>
+      <p>Voici les règles à connaître :</p>
 
-<style>
-  .nature-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
+      <div class="nature-section" id="section-calculs">
+        <div class="nature-list">
+          <div class="nature-item" data-nom="multiplication">Multiplication</div>
+          <div class="nature-item" data-nom="division">Division</div>
+          <div class="nature-item" data-nom="puissance">Puissance</div>
+        </div>
 
-  .nature-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+        <div class="nature-image">
+          <p class="nature-placeholder" id="nature-text-2">Clique sur un mot pour afficher l’image correspondante</p>
+          <img id="img-multiplication" src="/images/multiplication.jpeg" alt="Multiplication" />
+          <p id="caption-multiplication" class="image-caption">avec <strong>a</strong> un nombre relatif (≠ 0 pour la division) et <strong>b, c</strong> des entiers naturels</p>
 
-  .nature-item {
-    background: #1c1c1c;
-    color: white;
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 1rem;
-    transition: background 0.3s, transform 0.2s;
-  }
+          <img id="img-division" src="/images/division.jpeg" alt="Division" />
+          <p id="caption-division" class="image-caption">avec <strong>a</strong> un nombre relatif (≠ 0 pour la division) et <strong>b, c</strong> des entiers naturels</p>
 
-  .nature-item:hover,
-  .nature-item.selected {
-    background: #f39c12;
-    font-weight: bold;
-    transform: scale(1.05);
-  }
+          <img id="img-puissance" src="/images/puissance.jpeg" alt="Puissance" />
+          <p id="caption-puissance" class="image-caption">avec <strong>a</strong> un nombre relatif (≠ 0 pour la division) et <strong>b, c</strong> des entiers naturels</p>
+        </div>
+      </div>
 
-  .nature-image {
-    text-align: center;
-    position: relative;
-    min-height: 240px;
-    max-width: 100%;
-  }
-
-  .nature-image img {
-    max-width: 100%;
-    max-height: 340px;
-    width: auto;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    display: none;
-    margin: auto;
-  }
-
-  .nature-image img.active {
-    display: block;
-  }
-
-  .nature-placeholder {
-    color: #ccc;
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    font-style: italic;
-  }
-</style>
-
-<div class="nature-section">
-  <div class="nature-list">
-    <div class="nature-item" data-nom="multiplication">Multiplication</div>
-    <div class="nature-item" data-nom="division">Division</div>
-    <div class="nature-item" data-nom="puissance">Puissance</div>
-  </div>
-
-  <div class="nature-image" id="nature-display">
-    <p class="nature-placeholder" id="nature-text">Clique sur un mot pour afficher l’image correspondante</p>
-    <img id="img-multiplication" src="/images/multiplication.jpeg" alt="Multiplication" />
-    <img id="img-division" src="/images/division.jpeg" alt="Division" />
-    <img id="img-puissance" src="/images/puissance.jpeg" alt="Puissance" />
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.nature-item');
-    const images = document.querySelectorAll('.nature-image img');
-    const placeholder = document.getElementById('nature-text');
-
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        const nom = item.dataset.nom;
-
-        images.forEach(img => img.classList.remove('active'));
-
-        const imageToShow = document.getElementById('img-' + nom);
-        if (imageToShow) {
-          imageToShow.classList.add('active');
-          placeholder.style.display = 'none';
-        }
-
-        items.forEach(i => i.classList.remove('selected'));
-        item.classList.add('selected');
-      });
-    });
-  });
-</script>
-
-<div class="video">
-  <iframe width="100%" height="215"
-    src="https://www.youtube.com/embed/_FSfq97SYz4"
-    title="Vidéo Calculs"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
-</div>
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/_FSfq97SYz4"
+          title="Vidéo Calculs"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
 
       <!-- Partie 3 -->
       <h3>3. Notation scientifique - 3e</h3>
@@ -202,6 +193,52 @@ import '../styles/global.css';
       </div>
 
       <a href="/" class="btn">🏠 Retour à l’accueil</a>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const sections = [
+            {
+              id: 'section-exposants',
+              noms: ['positif', 'negatif'],
+              textId: 'nature-text-1'
+            },
+            {
+              id: 'section-calculs',
+              noms: ['multiplication', 'division', 'puissance'],
+              textId: 'nature-text-2'
+            }
+          ];
+
+          sections.forEach(section => {
+            const container = document.getElementById(section.id);
+            const items = container.querySelectorAll('.nature-item');
+            const images = section.noms.map(nom => document.getElementById('img-' + nom));
+            const captions = section.noms.map(nom => document.getElementById('caption-' + nom));
+            const placeholder = document.getElementById(section.textId);
+
+            items.forEach(item => {
+              item.addEventListener('click', () => {
+                const nom = item.dataset.nom;
+
+                images.forEach(img => img.classList.remove('active'));
+                captions.forEach(cap => cap.classList.remove('active'));
+
+                const imageToShow = document.getElementById('img-' + nom);
+                const captionToShow = document.getElementById('caption-' + nom);
+
+                if (imageToShow && captionToShow) {
+                  imageToShow.classList.add('active');
+                  captionToShow.classList.add('active');
+                  placeholder.style.display = 'none';
+                }
+
+                items.forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+              });
+            });
+          });
+        });
+      </script>
     </main>
   </body>
 </html>
