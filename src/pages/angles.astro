@@ -184,6 +184,195 @@ import '../styles/global.css';
     });
   });
 </script>
+<h3>📐 Devine la nature de l'angle !</h3>
+<style>
+  .quiz-container {
+    border: 2px solid #f39c12;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background: #fff3c4;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #333;
+  }
+
+  .quiz-canvas {
+    width: 300px;
+    height: 300px;
+    margin: 1rem auto;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .quiz-button {
+    padding: 0.5rem 1rem;
+    background: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .quiz-button:hover {
+    background: #f39c12;
+    transform: scale(1.05);
+  }
+
+  .quiz-feedback {
+    margin-top: 0.8rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .quiz-feedback.success {
+    color: green;
+  }
+
+  .quiz-feedback.error {
+    color: darkred;
+  }
+
+  .quiz-score {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .quiz-restart {
+    margin-top: 1rem;
+    background: #3498db;
+  }
+</style>
+
+<div class="quiz-container">
+  <p>Un angle va apparaître. Devine s’il est aigu, droit, obtus, nul ou plat.</p>
+  <canvas class="quiz-canvas" id="angleCanvas" width="300" height="300"></canvas>
+
+  <div class="quiz-options" id="quizOptions">
+    <button class="quiz-button">Nul</button>
+    <button class="quiz-button">Aigu</button>
+    <button class="quiz-button">Droit</button>
+    <button class="quiz-button">Obtus</button>
+    <button class="quiz-button">Plat</button>
+  </div>
+
+  <div class="quiz-feedback" id="quizFeedback"></div>
+  <div class="quiz-score" id="quizScore"></div>
+  <button class="quiz-button quiz-restart" id="quizRestart" style="display: none;">🔄 Rejouer</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('angleCanvas');
+    const ctx = canvas.getContext('2d');
+    const feedback = document.getElementById('quizFeedback');
+    const scoreDisplay = document.getElementById('quizScore');
+    const restartBtn = document.getElementById('quizRestart');
+    const options = document.querySelectorAll('#quizOptions .quiz-button');
+
+    const angles = [
+      { deg: 0, type: "Nul" },
+      { deg: 30, type: "Aigu" },
+      { deg: 90, type: "Droit" },
+      { deg: 135, type: "Obtus" },
+      { deg: 180, type: "Plat" }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let questions = [];
+
+    function drawAngle(deg) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cx = 150;
+      const cy = 150;
+      const len = 90;
+      const rad = deg * Math.PI / 180;
+
+      ctx.strokeStyle = "#e67e22";
+      ctx.lineWidth = 6;
+
+      // Première branche (horizontale droite)
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + len, cy);
+      ctx.stroke();
+
+      // Deuxième branche
+      ctx.beginPath();
+      if (deg === 0) {
+        // Ne rien tracer (seulement une branche)
+      } else if (deg === 180) {
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx - len, cy); // branche opposée
+      } else {
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + len * Math.cos(rad), cy - len * Math.sin(rad));
+      }
+      ctx.stroke();
+    }
+
+    function startQuiz() {
+      feedback.textContent = "";
+      score = 0;
+      current = 0;
+      questions = [];
+      for (let i = 0; i < 5; i++) {
+        questions.push(angles[Math.floor(Math.random() * angles.length)]);
+      }
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (current >= questions.length) {
+        feedback.textContent = "🎉 Bravo ! Quiz terminé.";
+        feedback.className = "quiz-feedback";
+        scoreDisplay.textContent = `Ton score : ${score} / ${questions.length}`;
+        restartBtn.style.display = "inline-block";
+        return;
+      }
+      drawAngle(questions[current].deg);
+    }
+
+    options.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const guess = btn.textContent;
+        const correct = questions[current].type;
+        if (guess === correct) {
+          feedback.textContent = "✅ Bonne réponse !";
+          feedback.className = "quiz-feedback success";
+          score++;
+        } else {
+          feedback.textContent = `❌ Mauvais choix… C’était ${correct}.`;
+          feedback.className = "quiz-feedback error";
+        }
+        current++;
+        setTimeout(() => {
+          feedback.textContent = "";
+          nextQuestion();
+        }, 1200);
+      });
+    });
+
+    restartBtn.addEventListener('click', () => {
+      restartBtn.style.display = "none";
+      scoreDisplay.textContent = "";
+      startQuiz();
+    });
+
+    startQuiz();
+  });
+</script>
 
       <div class="video">
         <iframe
