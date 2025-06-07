@@ -43,14 +43,21 @@ h2 {
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.6rem; /* augmenté pour meilleure lisibilité */
   margin-top: 2em;
   border-left: 5px solid var(--accent);
-  padding-left: 0.5em;
+  padding: 0.6em 0.8em;
   background: var(--accent-light);
-  padding: 0.5em;
-  border-radius: 4px;
+  border-radius: 6px;
+  cursor: pointer; /* Indique que c’est cliquable */
+  user-select: none;
+  transition: background 0.3s;
 }
+
+h3:hover {
+  background: #ddd; /* ou var(--card-border) pour un effet visuel au survol */
+}
+
 
 .container {
   padding: 1rem;
@@ -144,4 +151,18 @@ h3 {
   .conditions {
     color: #ccc;
   }
+}
+.collapsible-section {
+  display: none;
+  padding: 1rem 0;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.collapsible-section.open {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
