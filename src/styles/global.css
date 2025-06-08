@@ -37,10 +37,32 @@ h1 {
 }
 
 h2 {
-  font-size: 1.6rem;
-  margin: 1.5em 0 0.5em;
-  color: var(--accent);
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #f39c12, #e67e22);
+  padding: 1rem 0.5rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
+header h2 {
+  font-size: 1rem;         /* plus petit que 3rem */
+  font-weight: normal;     /* moins gras */
+  color: #ccc;             /* couleur claire, comme dans ton header */
+  background: none !important; /* enlève fond et dégradé */
+  padding: 0 !important;        /* enlève padding */
+  margin-top: 0.5rem;      /* margin pour garder un peu d’espace */
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  max-width: none !important;
+  text-align: center;      /* centré, comme dans ton header */
+}
+
 
 h3 {
   font-size: 1.6rem; /* augmenté pour meilleure lisibilité */
@@ -142,6 +164,11 @@ h3:hover {
 
 /* Mode sombre */
 @media (prefers-color-scheme: dark) {
+  h2 {
+  background: linear-gradient(to right, #e67e22, #d35400);
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
   .boxed {
     background-color: #333;
     border-left: 6px solid #ffcc00;
@@ -165,4 +192,51 @@ h3:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
+}
+h3.section-title {
+  display: flex;
+  align-items: center;
+  padding: 0.6em 0.8em;
+  background: var(--accent-light);
+  border-left: 5px solid var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s;
+  margin-top: 2em;
+}
+
+/* Animation flèche */
+h3.section-title .arrow {
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-right: 0.5em;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+/* Rotation flèche quand ouvert */
+h3.section-title.open .arrow {
+  transform: rotate(45deg);
+}
+
+/* Texte incitatif (CTA) */
+h3.section-title .cta {
+  font-size: 0.8em;
+  color: gray;
+  margin-left: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Cache CTA quand la section est ouverte */
+h3.section-title.open .cta {
+  opacity: 0;
+}
+
+/* Titre principal (entre flèche et CTA) */
+h3.section-title .title-text {
+  flex-grow: 1;
 }

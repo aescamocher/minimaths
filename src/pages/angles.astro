@@ -14,7 +14,12 @@ import '../styles/global.css';
       <h2>Angles - 6e</h2>
 
       <!-- Partie 1 -->
-<h3 class="collapsible-title">1. Vocabulaire et nature des angles</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">1. Vocabulaire et nature</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
 <div class="collapsible-section">
       <style>
         .definition-container {
@@ -385,7 +390,12 @@ import '../styles/global.css';
       </div>
 </div>
       <!-- Partie 2 -->
-      <h3 class="collapsible-title">2. Mesurer un angle</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">2. Mesurer</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
 <div class="collapsible-section">
       <div class="video">
         <iframe
@@ -399,7 +409,12 @@ import '../styles/global.css';
       </div>
 </div>
       <!-- Partie 3 -->
-<h3 class="collapsible-title">3. Construire un angle</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">3. Construire</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
 <div class="collapsible-section">
       <div class="video">
         <iframe
@@ -413,7 +428,12 @@ import '../styles/global.css';
       </div>
 </div>
       <!-- Partie 4 -->
-<h3 class="collapsible-title">4. Permis rapporteur</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">4. Permis Rapporteur</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
 <div class="collapsible-section">
       <p style="text-align: center;">Teste tes compétences avec un permis en ligne :</p>
       <div style="text-align: center; margin: 1.5rem 0;">
@@ -449,7 +469,23 @@ import '../styles/global.css';
       }
     });
   });
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.collapsible-title, .section-title');
+
+    titles.forEach(title => {
+      const next = title.nextElementSibling;
+      if (next && next.classList.contains('collapsible-section')) {
+        // Déplier/replier au clic
+        title.addEventListener('click', () => {
+          const isOpen = title.classList.toggle('open');
+          next.classList.toggle('open', isOpen);
+        });
+      }
+    });
+  });
 </script>
+
 
   </body>
 </html>
