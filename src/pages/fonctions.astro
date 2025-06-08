@@ -14,7 +14,13 @@ import '../styles/global.css';
       <h2>Fonctions – 3e</h2>
 
       <!-- Partie 1 -->
-      <h3>1. Définition</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">1. Définition</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -25,9 +31,16 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
       <!-- Partie 2 -->
-      <h3>2. Représentation graphique</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">2. Lecture graphique</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -38,9 +51,15 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+</div>
       <!-- Partie 3 -->
-      <h3>3. Expression littérale</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">3. Expression littérale</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -51,9 +70,15 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+</div>
       <!-- Partie 4 -->
-      <h3>4. QCM bilan</h3>
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">4. Objectif Brevet</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -64,8 +89,41 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+</div>
       <a href="/" class="btn">🏠 Retour à l’accueil</a>
     </main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.collapsible-title');
+    titles.forEach(title => {
+      const next = title.nextElementSibling;
+      if (next && next.classList.contains('collapsible-section')) {
+        // Par défaut replié
+        next.classList.remove('open');
+
+        // Clic pour ouvrir/fermer
+        title.addEventListener('click', () => {
+          next.classList.toggle('open');
+        });
+      }
+    });
+  });
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.collapsible-title, .section-title');
+
+    titles.forEach(title => {
+      const next = title.nextElementSibling;
+      if (next && next.classList.contains('collapsible-section')) {
+        // Déplier/replier au clic
+        title.addEventListener('click', () => {
+          const isOpen = title.classList.toggle('open');
+          next.classList.toggle('open', isOpen);
+        });
+      }
+    });
+  });
+</script>
+
   </body>
 </html>
