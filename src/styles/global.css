@@ -7,6 +7,8 @@
   --card-border: #ccc;
   --danger: #d90429;
   --success: #198754;
+  --logo-orange: #fda502;
+  --text-blue: #237fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +19,8 @@
     --accent-light: #1e1e2e;
     --card-bg: #1e1e1e;
     --card-border: #333;
+    --logo-orange: #fda502;
+    --text-blue: #237fff;
   }
 }
 
@@ -41,7 +45,7 @@ h2 {
   font-size: 3rem;
   font-weight: bold;
   color: white;
-  background: linear-gradient(to right, #f39c12, #e67e22);
+  background: linear-gradient(to right, var(--logo-orange), #f78c1f);
   padding: 1rem 0.5rem;
   border-radius: 12px;
   margin: 2rem auto;
@@ -49,37 +53,44 @@ h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
+
+@media (prefers-color-scheme: dark) {
+  h2 {
+    background: linear-gradient(to right, var(--logo-orange), #b36b00);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  }
+}
+
 header h2 {
-  font-size: 1rem;         /* plus petit que 3rem */
-  font-weight: normal;     /* moins gras */
-  color: #ccc;             /* couleur claire, comme dans ton header */
-  background: none !important; /* enlève fond et dégradé */
-  padding: 0 !important;        /* enlève padding */
-  margin-top: 0.5rem;      /* margin pour garder un peu d’espace */
+  font-size: 1rem;
+  font-weight: normal;
+  color: #ccc;
+  background: none !important;
+  padding: 0 !important;
+  margin-top: 0.5rem;
   border-radius: 0 !important;
   box-shadow: none !important;
   text-shadow: none !important;
   max-width: none !important;
-  text-align: center;      /* centré, comme dans ton header */
+  text-align: center;
 }
 
-
 h3 {
-  font-size: 1.6rem; /* augmenté pour meilleure lisibilité */
+  font-size: 1.6rem;
   margin-top: 2em;
   border-left: 5px solid var(--accent);
   padding: 0.6em 0.8em;
   background: var(--accent-light);
   border-radius: 6px;
-  cursor: pointer; /* Indique que c’est cliquable */
+  cursor: pointer;
   user-select: none;
   transition: background 0.3s;
 }
 
 h3:hover {
-  background: #ddd; /* ou var(--card-border) pour un effet visuel au survol */
+  background: #ddd;
 }
-
 
 .container {
   padding: 1rem;
@@ -116,15 +127,8 @@ h3:hover {
 .btn:hover {
   background: #3730a3;
 }
-.boxed {
-  background: var(--accent-light);
-  border: 2px solid var(--accent);
-  padding: 1rem;
-  border-radius: 10px;
-  margin: 1.5em 0;
-  text-align: center;
-  font-size: 1.1rem;
-}
+
+/* Cadre orange */
 .boxed {
   background-color: #fdf6e3;
   border-left: 6px solid #ffcc00;
@@ -132,6 +136,20 @@ h3:hover {
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  color: var(--text-blue) !important;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .boxed {
+    background-color: #333;
+    border-left: 6px solid #ffcc00;
+    color: var(--text-blue) !important;
+  }
+
+  .conditions {
+    color: #ccc;
+  }
 }
 
 .formula {
@@ -151,34 +169,7 @@ h3:hover {
   font-size: 0.9rem;
   color: gray;
 }
-/* Styles .boxed par défaut (mode clair) */
-.boxed {
-  background-color: #fdf6e3;
-  border-left: 6px solid #ffcc00;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  color: #111;
-}
 
-/* Mode sombre */
-@media (prefers-color-scheme: dark) {
-  h2 {
-  background: linear-gradient(to right, #e67e22, #d35400);
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-}
-  .boxed {
-    background-color: #333;
-    border-left: 6px solid #ffcc00;
-    color: #fdf6e3;
-  }
-
-  .conditions {
-    color: #ccc;
-  }
-}
 .collapsible-section {
   display: none;
   padding: 1rem 0;
@@ -190,9 +181,16 @@ h3:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 h3.section-title {
   display: flex;
   align-items: center;
@@ -206,7 +204,6 @@ h3.section-title {
   margin-top: 2em;
 }
 
-/* Animation flèche */
 h3.section-title .arrow {
   display: inline-block;
   width: 0.75em;
@@ -218,12 +215,10 @@ h3.section-title .arrow {
   transition: transform 0.3s ease;
 }
 
-/* Rotation flèche quand ouvert */
 h3.section-title.open .arrow {
   transform: rotate(45deg);
 }
 
-/* Texte incitatif (CTA) */
 h3.section-title .cta {
   font-size: 0.8em;
   color: gray;
@@ -231,12 +226,10 @@ h3.section-title .cta {
   transition: opacity 0.3s ease;
 }
 
-/* Cache CTA quand la section est ouverte */
 h3.section-title.open .cta {
   opacity: 0;
 }
 
-/* Titre principal (entre flèche et CTA) */
 h3.section-title .title-text {
   flex-grow: 1;
 }
