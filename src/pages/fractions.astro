@@ -13,11 +13,16 @@ import '../styles/global.css';
       <h2>Fractions</h2>
 
       <!-- Partie 1 -->
-      <h3>1. Addition et soustraction – même dénominateur - 6e</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Additionner et soustraire - Même dénominateur</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <p>Pour additionner ou soustraire des fractions au même dénominateur, on additionne ou on soustrait les numérateurs et on conserve le dénominateur.</p>
 
 
-      </div>
+ 
 <div class="video">
   <iframe width="100%" height="215"
     src="https://www.youtube.com/embed/VTfPbv6MVAI"
@@ -26,9 +31,14 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
-
+     </div>
       <!-- Partie 2 -->
-      <h3>2. Addition et soustraction – dénominateurs différents - 5e</h3>
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Additionner et soustraire - Dénominateurs différents</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
 
 <div class="video">
   <iframe width="100%" height="215"
@@ -38,13 +48,18 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
-
+</div>
       <!-- Partie 3 -->
-      <h3>3. Multiplication de fractions - 5e</h3>
+        <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Multiplier</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <p>On multiplie les numérateurs et les dénominateurs entre eux. </p>
 
 
-      </div>
+
 <div class="video">
   <iframe width="100%" height="215"
     src="https://www.youtube.com/embed/EANx5PPkYFc"
@@ -53,9 +68,15 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
+</div>
 
       <!-- Partie 4 -->
-      <h3>4. Diviser par une fraction - 4e</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Diviser </span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <p>Diviser par une fraction revient à multiplier par son inverse. </p>
 
 
@@ -67,15 +88,16 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
-
+</div>
       <!-- Partie 5 -->
-      <h3>5. QCM Bilan - 4e </h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. QCM Bilan</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
 
-      <div class="boxed">
-        <p style="text-align: center;">
-          Teste tes connaissances sur les fractions avec ce QCM rapide.
-        </p>
-      </div>
+
 
       <div class="video">
         <iframe width="100%" height="215"
@@ -85,8 +107,22 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+      </div>
       <a href="/" class="btn">🏠 Retour à l’accueil</a>
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

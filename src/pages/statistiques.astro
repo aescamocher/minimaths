@@ -118,7 +118,12 @@ import '../styles/global.css';
     <main class="container">
       <h2>Statistiques</h2>
 
-      <h3>1. Fréquence</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Fréquence</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="formula">
         <span class="term">
           Fréquence
@@ -136,8 +141,14 @@ import '../styles/global.css';
           </span>
         </span>
       </div>
+</div>
 
-      <h3>2. Moyenne - 5e</h3>
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Moyenne</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="formula">
         <span class="term">
           Moyenne
@@ -164,8 +175,14 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
-      <h3>3. Médiane - 4e</h3>
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Médiane</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="formula">
         <span class="term">
           Médiane
@@ -191,8 +208,14 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
-      <h3>4. Étendue - 3e</h3>
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Etendue</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="formula">
         <span class="term">
           Étendue
@@ -218,13 +241,15 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
-      <h3>5. QCM Bilan - 3e</h3>
-      <div class="boxed">
-        <p style="text-align: center;">
-          Teste tes connaissances sur les statistiques avec ce QCM rapide.
-        </p>
-      </div>
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. Objectif Brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
 
       <div class="video">
         <iframe width="100%" height="215"
@@ -234,8 +259,23 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
       <a href="/" class="btn">🏠 Retour à l’accueil</a>
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
