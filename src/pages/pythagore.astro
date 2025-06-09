@@ -1,4 +1,4 @@
---- 
+---
 import Header from '../components/Header.astro';
 import '../styles/global.css';
 ---
@@ -16,7 +16,9 @@ import '../styles/global.css';
       <!-- Image + légende -->
       <div style="margin-bottom: 2rem;">
         <img src="/images/pythagore.jpeg" alt="Théorème de Pythagore" style="width: 100%; border-radius: 12px;" />
-        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">« Le carré de la longueur de l’hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés. »</p>
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Dans un triangle rectangle, le carré de la longueur de l’hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés. »
+        </p>
       </div>
 
       <!-- PARTIE 1 -->
@@ -30,29 +32,23 @@ import '../styles/global.css';
           <img src="/images/hypotenuse.jpeg" alt="Hypoténuse" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
-        <details style="margin-bottom: 1rem;">
-          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée en vidéo :</summary>
-          <p>
-     
-        <div class="video">
-          <iframe
-            width="100%"
-            height="215"
-            src="https://www.youtube.com/embed/dPH5MeALlgg"
-            title="Vidéo exercice 1 Pythagore"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
-        </div>
-
+        <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
+          <div class="video">
+            <iframe
+              width="100%"
+              height="215"
+              src="https://www.youtube.com/embed/dPH5MeALlgg"
+              title="Vidéo exercice 1 Pythagore"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
         </details>
 
-
-
-
-        <ul style="margin-top: 1rem;">
-          <li><a href="/docs/hypotenuse.pdf" target="_blank">Fiche d'exercices corrigés générée sur MathsMentales.net (PDF)</a></li>
-          <li><a href="/docs/hypotenuse2.pdf" target="_blank">Autres exercices (PDF)</a></li>
+        <ul class="link-buttons">
+          <li><a href="/docs/hypotenuse.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/hypotenuse2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
         </ul>
       </div>
 
@@ -67,26 +63,23 @@ import '../styles/global.css';
           <img src="/images/angledroit.jpeg" alt="Angle droit" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
-               <details style="margin-bottom: 1rem;">
-          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée en vidéo :</summary>
-          <p>
-     
-        <div class="video">
-          <iframe
-            width="100%"
-            height="215"
-            src="https://www.youtube.com/embed/YXrDlkF2ZcU"
-            title="Vidéo exercice 1 Pythagore"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
-        </div>
-
+        <details style="margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
+          <div class="video">
+            <iframe
+              width="100%"
+              height="215"
+              src="https://www.youtube.com/embed/YXrDlkF2ZcU"
+              title="Vidéo exercice 2 Pythagore"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
         </details>
 
-        <ul style="margin-top: 1rem;">
-          <li><a href="/docs/angledroit.pdf" target="_blank">Fiche d'exercices corrigés générée sur MathsMentales.net (PDF)</a></li>
-          <li><a href="/docs/angledroit2.pdf" target="_blank">Autres exercices (PDF)</a></li>
+        <ul class="link-buttons">
+          <li><a href="/docs/angledroit.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/angledroit2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
         </ul>
       </div>
 
@@ -101,26 +94,23 @@ import '../styles/global.css';
           <img src="/images/rectangle.jpeg" alt="Rectangle" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
-                      <details style="margin-bottom: 1rem;">
-          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée en vidéo :</summary>
-          <p>
-     
-        <div class="video">
-          <iframe
-            width="100%"
-            height="215"
-            src="https://www.youtube.com/embed/yaSUraJrcCk"
-            title="Vidéo exercice 1 Pythagore"
-            frameborder="0"
-            allowfullscreen>
-          </iframe>
-        </div>
-
+        <details style="margin-bottom: 1rem;">
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
+          <div class="video">
+            <iframe
+              width="100%"
+              height="215"
+              src="https://www.youtube.com/embed/yaSUraJrcCk"
+              title="Vidéo exercice 3 Pythagore"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
         </details>
 
-        <ul style="margin-top: 1rem;">
-          <li><a href="/docs/rectangle.pdf" target="_blank">Fiche d'exercices corrigés générée sur MathsMentales.net (PDF)</a></li>
-          <li><a href="/docs/rectangle2.pdf" target="_blank">Autres exercices (PDF)</a></li>
+        <ul class="link-buttons">
+          <li><a href="/docs/rectangle.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/rectangle2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
         </ul>
       </div>
 
@@ -142,9 +132,9 @@ import '../styles/global.css';
           </iframe>
         </div>
 
-        <ul style="margin-top: 1rem;">
-          <li><a href="/docs/melanges.pdf" target="_blank">Fiche d'exercices mélangés corrigés générée sur MathsMentales.net (PDF)</a></li>
-          <li><a href="/docs/dnb.pdf" target="_blank">Exercices DNB(PDF)</a></li>
+        <ul class="link-buttons">
+          <li><a href="/docs/melanges.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices mélangés corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/dnb.pdf" target="_blank" class="pdf-button">📘 Exercices type DNB (Sésamaths) - nécessite cosinus </a></li>
         </ul>
       </div>
 

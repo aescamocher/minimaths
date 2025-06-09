@@ -233,3 +233,67 @@ h3.section-title.open .cta {
 h3.section-title .title-text {
   flex-grow: 1;
 }
+.link-buttons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.pdf-button {
+  display: block;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.pdf-button:hover {
+  background-color: #1d4ed8;
+}
+
+.collapsible-section ul {
+  padding: 0 1rem;
+}
+details summary {
+  display: inline-block;
+  background-color: #FDA502; /* orange chaud */
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+  border: none;
+  position: relative;
+  padding-right: 2rem;
+}
+
+details summary:hover {
+  background-color: #e69200; /* nuance plus foncée au hover */
+}
+
+/* Icône flèche dynamique */
+details[open] summary::after {
+  content: "▲";
+}
+
+details summary::after {
+  content: "▼";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+}
