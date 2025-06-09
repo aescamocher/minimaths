@@ -14,7 +14,12 @@ import '../styles/global.css';
       <h2>Trigonométrie – 3e</h2>
 
       <!-- Partie 1 -->
-      <h3>1. Vocabulaire</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Vocabulaire</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -25,9 +30,15 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
       <!-- Partie 2 -->
-      <h3>2. Calculer une longueur</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Calculer une longueur</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -38,9 +49,15 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</div>
 
       <!-- Partie 3 -->
-      <h3>3. Calculer un angle</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Calculer un angle</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -51,9 +68,14 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+</div>
       <!-- Partie 4 -->
-      <h3>4. QCM bilan</h3>
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Objectif Brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
       <div class="video">
         <iframe
           width="100%"
@@ -64,8 +86,22 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
-
+     </div>
       <a href="/" class="btn">🏠 Retour à l’accueil</a>
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
