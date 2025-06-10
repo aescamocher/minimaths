@@ -38,7 +38,7 @@ import '../styles/global.css';
   <input
     type="text"
     id="reponse1"
-    placeholder="Entrez votre réponse (ex: 3,4)"
+    placeholder="Entre ta réponse (sans unité)"
     style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
   />
   <button
@@ -56,7 +56,7 @@ import '../styles/global.css';
     const feedback = document.getElementById('feedback1');
 
     if (reponse === '') {
-      feedback.textContent = 'Veuillez entrer une réponse.';
+      feedback.textContent = 'Entre une réponse.';
       feedback.style.color = '#d90429'; // rouge
     } else if (reponse === '6,5') {
       feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
@@ -108,7 +108,7 @@ import '../styles/global.css';
   <input
     type="text"
     id="reponse2"
-    placeholder="Entrez votre réponse (ex: 7)"
+    placeholder="Entre ta réponse (ex: 7)"
     style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
   />
   <button
@@ -126,7 +126,7 @@ import '../styles/global.css';
     const feedback = document.getElementById('feedback2');
 
     if (reponse === '') {
-      feedback.textContent = 'Veuillez entrer une réponse.';
+      feedback.textContent = 'Entre une réponse.';
       feedback.style.color = '#d90429'; // rouge
     } else if (reponse === '3') {
       feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
@@ -181,7 +181,7 @@ import '../styles/global.css';
     <input
       type="text"
       id="reponse31"
-      placeholder="Entrez la réponse"
+      placeholder="Entre ta réponse sans espace"
       style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;"
     />
     <button
@@ -199,7 +199,7 @@ import '../styles/global.css';
     <input
       type="text"
       id="reponse32"
-      placeholder="Entrez la réponse"
+      placeholder="Entre ta réponse sans espace"
       style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;"
     />
     <button
@@ -219,7 +219,7 @@ import '../styles/global.css';
     const val = input.value.trim();
 
     if (val === '') {
-      feedback.textContent = 'Veuillez entrer une réponse.';
+      feedback.textContent = 'Entre une réponse.';
       feedback.style.color = '#d90429';
     } else if (val === correctAnswer) {
       feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
