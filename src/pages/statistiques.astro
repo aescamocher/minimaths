@@ -37,7 +37,42 @@ import '../styles/global.css';
 <section class="example-corrected" data-title="Exemple corrigé">
         <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/moyenne.jpeg" alt="Moyenne" style="max-width: 100%; border-radius: 12px;" />
-        </div>     
+        </div>   
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p> Moyenne = ?</p>
+  <input
+    type="text"
+    id="reponse1"
+    placeholder="Entre ta réponse décimale"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider1"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback1" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider1').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse1').value.trim().replace('.', ',');
+    const feedback = document.getElementById('feedback1');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '12,5') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour l\'interprétation regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
+  
         <details >
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
  <div class="video">
@@ -64,7 +99,43 @@ import '../styles/global.css';
 <section class="example-corrected" data-title="Exemple corrigé">
        <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/mediane.jpeg" alt="Mediane" style="max-width: 100%; border-radius: 12px;" />
-        </div>     
+        </div> 
+
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p>Médiane = ?</p>
+  <input
+    type="text"
+    id="reponse2"
+    placeholder="Entre ta réponse (sans espace)"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider2"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback2" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider2').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse2').value.trim();
+    const feedback = document.getElementById('feedback2');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '2091') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour l\'interprétation et une série paire regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
+    
         <details >
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
       <div class="video">
@@ -91,7 +162,43 @@ import '../styles/global.css';
 <section class="example-corrected" data-title="Exemple corrigé">
        <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/etendue.jpeg" alt="Etendue" style="max-width: 100%; border-radius: 12px;" />
-        </div>     
+        </div>   
+
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p> Etendue = ?</p>
+  <input
+    type="text"
+    id="reponse3"
+    placeholder="Entre ta réponse décimale"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider3"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback3" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider3').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse3').value.trim().replace('.', ',');
+    const feedback = document.getElementById('feedback3');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '0,31') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour l\'interprétation regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
+  
         <details >
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
       <div class="video">
