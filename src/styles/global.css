@@ -297,3 +297,48 @@ details summary::after {
   transform: translateY(-50%);
   font-size: 0.9rem;
 }
+.example-corrected,
+.training-links {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 3rem auto;
+  max-width: 700px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Titre fin centré au-dessus */
+.example-corrected::before,
+.training-links::before {
+  content: attr(data-title);
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.example-corrected::before,
+.training-links::before {
+  content: attr(data-title);
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--logo-orange); /* ta couleur orange personnalisée */
+  margin-bottom: 1rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+@media (prefers-color-scheme: dark) {
+  .example-corrected::before,
+  .training-links::before {
+    color: #ffb733; /* légèrement plus clair pour ressortir mieux en sombre */
+  }
+}
