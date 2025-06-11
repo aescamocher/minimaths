@@ -70,6 +70,41 @@ import '../styles/global.css';
           <img src="/images/longueurtrigo.jpeg" alt="Longueurtrigo" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p> BC = ?</p>
+  <input
+    type="text"
+    id="reponse1"
+    placeholder="Entre ta réponse (sans unité)"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider1"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback1" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider1').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse1').value.trim().replace('.', ',');
+    const feedback = document.getElementById('feedback1');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '8') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
+
         <details >
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
           <div class="video">
@@ -104,6 +139,41 @@ import '../styles/global.css';
 <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/angletrigo.jpeg" alt="Angletrigo" style="max-width: 100%; border-radius: 12px;" />
         </div>
+
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p>Â = ?</p>
+  <input
+    type="text"
+    id="reponse2"
+    placeholder="Entre ta réponse arrondie à l'unité"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider2"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback2" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider2').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse2').value.trim();
+    const feedback = document.getElementById('feedback2');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '53') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
 
         <details >
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
