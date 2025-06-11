@@ -15,14 +15,62 @@ import '../styles/global.css';
     <main class="container">
       <h2>Statistiques</h2>
 
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/statsindicateurs.jpeg" alt="Indicateurs Statistiques" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Les principaux indicateurs de position et de dispersion en statistiques. »
+        </p>
+      </div>
+
       <h3 class="section-title">
         <span class="arrow"></span>
         <span class="title-text">1. Fréquence</span>
         <span class="cta">Cliquez pour ouvrir ▼</span>
       </h3>
       <div class="collapsible-section">
+
 <section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/frequenceext.jpeg" alt="Fréquence" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
+  <p> Fréquence = ?</p>
+  <input
+    type="text"
+    id="reponse5"
+    placeholder="Entre ta réponse décimale"
+    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+  />
+  <button
+    id="valider5"
+    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedback5" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('valider5').addEventListener('click', () => {
+    const reponse = document.getElementById('reponse5').value.trim().replace('.', ',');
+    const feedback = document.getElementById('feedback5');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429'; // rouge
+    } else if (reponse === '0,32') {
+      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour les détails regarde la vidéo ci-dessous (bientôt).';
+      feedback.style.color = '#198754'; // vert
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous (bientôt).';
+      feedback.style.color = '#d90429'; // rouge
+    }
+  });
+</script>
 </section>
+
 <section class="training-links" data-title="Pour s’entraîner">
         <ul class="link-buttons">
           <li><a href="/docs/frequence1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Coopmaths)</a></li>
@@ -249,6 +297,10 @@ import '../styles/global.css';
       </div>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/statsmelanges.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices mélangés corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/statsdnb.pdf" target="_blank" class="pdf-button">📘 Exercices DNB corrigés (Coopmaths)</a></li>
+        </ul>
 </section>
 </div>
 
