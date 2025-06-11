@@ -29,7 +29,107 @@ import '../styles/global.css';
 <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/vocabulairetrigo.jpeg" alt="Vocabulairetrigo" style="max-width: 100%; border-radius: 12px;" />
         </div>
+<div style="display: flex; gap: 0.6rem; max-width: 700px; margin: 1.5rem 0; font-family: system-ui, sans-serif; flex-wrap: wrap; justify-content: space-between;">
 
+  <!-- Question 1 -->
+  <div style="flex: 1 1 32%; min-width: 200px; box-sizing: border-box;">
+    <p>sin Â = ?</p>
+    <input type="text" id="reponse31a" placeholder="numérateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.3rem;" />
+    <input type="text" id="reponse31b" placeholder="dénominateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;" />
+    <button id="valider31" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">Valider</button>
+    <p id="feedback31" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 2 -->
+  <div style="flex: 1 1 32%; min-width: 200px; box-sizing: border-box;">
+    <p>cos Â = ?</p>
+    <input type="text" id="reponse32a" placeholder="numérateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.3rem;" />
+    <input type="text" id="reponse32b" placeholder="dénominateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;" />
+    <button id="valider32" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">Valider</button>
+    <p id="feedback32" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 3 -->
+  <div style="flex: 1 1 32%; min-width: 200px; box-sizing: border-box;">
+    <p>tan Â = ?</p>
+    <input type="text" id="reponse33a" placeholder="numérateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.3rem;" />
+    <input type="text" id="reponse33b" placeholder="dénominateur ?" style="width: 100%; padding: 0.3rem 0.5rem; font-size: 0.95rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;" />
+    <button id="valider33" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">Valider</button>
+    <p id="feedback33" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+<script>
+  function includesBoth(valA, valB, validA, validB) {
+    const set = new Set([valA.trim(), valB.trim()]);
+    return (
+      (set.has(validA[0]) && set.has(validB[0])) ||
+      (set.has(validA[0]) && set.has(validB[1])) ||
+      (set.has(validA[1]) && set.has(validB[0])) ||
+      (set.has(validA[1]) && set.has(validB[1]))
+    );
+  }
+
+  // Question 1 : 
+  document.getElementById('valider31').addEventListener('click', function () {
+    const valA = document.getElementById('reponse31a').value;
+    const valB = document.getElementById('reponse31b').value;
+    const feedback = document.getElementById('feedback31');
+
+    const validA = ['BC', 'CB'];
+    const validB = ['AC', 'CA'];
+
+    if (includesBoth(valA, valB, validA, validB)) {
+      feedback.textContent = '✅ Bien joué ! Revois la vidéo ci-dessous si tu veux plus de détails.';
+      feedback.style.color = 'green';
+    } else {
+      feedback.textContent = '❌ Mauvaise fraction. Revois la vidéo ci-dessous.';
+      feedback.style.color = 'red';
+    }
+  });
+
+  // Question 2 : 
+  document.getElementById('valider32').addEventListener('click', function () {
+  const valA = document.getElementById('reponse32a').value.trim().toUpperCase();
+  const valB = document.getElementById('reponse32b').value.trim().toUpperCase();
+  const feedback = document.getElementById('feedback32');
+
+  const valid1 = ['AB', 'BA'];
+  const valid2 = ['AC', 'CA'];
+
+  const isValid = (valid1.includes(valA) && valid2.includes(valB)) ||
+                  (valid1.includes(valB) && valid2.includes(valA));
+
+  if (isValid) {
+    feedback.textContent = '✅ Bien joué ! Revois la vidéo ci-dessous si tu veux plus de détails.';
+    feedback.style.color = 'green';
+  } else {
+    feedback.textContent = '❌ Mauvaise fraction. Revois la vidéo ci-dessous.';
+    feedback.style.color = 'red';
+  }
+});
+
+
+  // Question 3 : égalité
+  document.getElementById('valider33').addEventListener('click', function () {
+    const valA = document.getElementById('reponse33a').value.trim().toUpperCase();
+    const valB = document.getElementById('reponse33b').value.trim().toUpperCase();
+    const feedback = document.getElementById('feedback33');
+
+  const valid11 = ['BC', 'CB'];
+  const valid22 = ['AB', 'BA'];
+
+  const isValid = (valid11.includes(valA) && valid22.includes(valB)) ||
+                  (valid11.includes(valB) && valid22.includes(valA));
+
+  if (isValid) {
+    feedback.textContent = '✅ Bien joué ! Revois la vidéo ci-dessous si tu veux plus de détails.';
+    feedback.style.color = 'green';
+  } else {
+    feedback.textContent = '❌ Mauvaise fraction. Revois la vidéo ci-dessous.';
+    feedback.style.color = 'red';
+    }
+  });
+</script>
 
         <details >
 
