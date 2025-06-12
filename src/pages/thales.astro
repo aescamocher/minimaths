@@ -6,139 +6,131 @@ import '../styles/global.css';
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>MiniMaths – Pythagore</title>
-<meta name="description" content="Exercices interactifs corrigés sur le théorème de Pythagore pour les élèves de 4e." />
+    <title>MiniMaths – Thalès</title>
+<meta name="description" content="Exercices interactifs corrigés sur le théorème de Thalès pour les élèves de 4e et 3e." />
 
   </head>
   <body>
     <Header />
     <main class="container">
-      <h2>Pythagore - 4e</h2>
+      <h2>Thalès</h2>
 
       <!-- Image + légende -->
       <div style="margin-bottom: 2rem;">
-        <img src="/images/pythagore.jpeg" alt="Théorème de Pythagore" style="width: 100%; border-radius: 12px;" />
+        <img src="/images/thalesresume.jpeg" alt="Théorème de Thalès" style="width: 100%; border-radius: 12px;" />
         <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
-          « Dans un triangle rectangle, le carré de la longueur de l’hypoténuse est égal à la somme des carrés des longueurs des deux autres côtés. »
+          « Le rapport que j'entretiens avec mon ombre est le même que celui que la pyramide entretient avec la sienne. »
         </p>
       </div>
 
       <!-- PARTIE 1 -->
       <h3 class="section-title">
         <span class="arrow"></span>
-        <span class="title-text">1. Calculer la longueur de l'hypoténuse</span>
+        <span class="title-text">1. Ecrire l'égalité</span>
         <span class="cta">Cliquez pour ouvrir ▼</span>
       </h3>
       <div class="collapsible-section">
 <section class="example-corrected" data-title="Exemple corrigé">
         <div style="text-align: center; margin-bottom: 1rem;">
-          <img src="/images/hypotenuse.jpeg" alt="Hypoténuse" style="max-width: 100%; border-radius: 12px;" />
+          <img src="/images/thalesegalite.jpeg" alt="Egalite de Thalès" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
-<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
-  <p> AC = ?</p>
-  <input
-    type="text"
-    id="reponse1"
-    placeholder="Entre ta réponse (sans unité)"
-    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
-  />
-  <button
-    id="valider1"
-    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
-  >
-    Valider
-  </button>
-  <p id="feedback1" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
-</div>
-
-<script>
-  document.getElementById('valider1').addEventListener('click', () => {
-    const reponse = document.getElementById('reponse1').value.trim().replace('.', ',');
-    const feedback = document.getElementById('feedback1');
-
-    if (reponse === '') {
-      feedback.textContent = 'Entre une réponse.';
-      feedback.style.color = '#d90429'; // rouge
-    } else if (reponse === '6,5') {
-      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
-      feedback.style.color = '#198754'; // vert
-    } else {
-      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
-      feedback.style.color = '#d90429'; // rouge
-    }
-  });
-</script>
 
 
-        <details >
-          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
-          <div class="video">
-            <iframe
-              width="100%"
-              height="215"
-              src="https://www.youtube.com/embed/dPH5MeALlgg"
-              title="Vidéo exercice 1 Pythagore"
-              frameborder="0"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </details>
+
+
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
         <ul class="link-buttons">
-          <li><a href="/docs/hypotenuse.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
-          <li><a href="/docs/hypotenuse2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
-        </ul>
+          <li><a href="/docs/thalesegalite1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+                 </ul>
 </section>
       </div>
 
       <!-- PARTIE 2 -->
       <h3 class="section-title">
         <span class="arrow"></span>
-        <span class="title-text">2. Calculer la longueur d'un côté de l'angle droit</span>
+        <span class="title-text">2. Calculer une longueur</span>
         <span class="cta">Cliquez pour ouvrir ▼</span>
       </h3>
       <div class="collapsible-section">
 <section class="example-corrected" data-title="Exemple corrigé">
         <div style="text-align: center; margin-bottom: 1rem;">
-          <img src="/images/angledroit.jpeg" alt="Angle droit" style="max-width: 100%; border-radius: 12px;" />
+          <img src="/images/thaleslongueur.jpeg" alt="Thalès longueur" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
-<div style="margin: 1.5rem 0; font-family: system-ui, sans-serif; max-width: 320px;">
-  <p>AB = ?</p>
-  <input
-    type="text"
-    id="reponse2"
-    placeholder="Entre ta réponse (ex: 7)"
-    style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
-  />
-  <button
-    id="valider2"
-    style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
-  >
-    Valider
-  </button>
-  <p id="feedback2" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; font-family: system-ui, sans-serif; max-width: 100%; justify-content: center;">
+  <!-- Question CB -->
+  <div style="flex: 1 1 300px; max-width: 320px;">
+    <p>CB = ?</p>
+    <input
+      type="text"
+      id="reponseCB"
+      placeholder="Entre ta réponse (sans unité)"
+      style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+    />
+    <button
+      id="validerCB"
+      style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackCB" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question CE -->
+  <div style="flex: 1 1 300px; max-width: 320px;">
+    <p>CE = ?</p>
+    <input
+      type="text"
+      id="reponseCE"
+      placeholder="Entre ta réponse (sans unité)"
+      style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.5rem;"
+    />
+    <button
+      id="validerCE"
+      style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackCE" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
 </div>
 
 <script>
-  document.getElementById('valider2').addEventListener('click', () => {
-    const reponse = document.getElementById('reponse2').value.trim();
-    const feedback = document.getElementById('feedback2');
+  document.getElementById('validerCB').addEventListener('click', () => {
+    const reponse = document.getElementById('reponseCB').value.trim().replace(',', '.');
+    const feedback = document.getElementById('feedbackCB');
 
     if (reponse === '') {
       feedback.textContent = 'Entre une réponse.';
-      feedback.style.color = '#d90429'; // rouge
-    } else if (reponse === '3') {
-      feedback.textContent = '✅ Bravo, c’est la bonne réponse ! Pour la rédaction regarde la vidéo ci-dessous.';
-      feedback.style.color = '#198754'; // vert
+      feedback.style.color = '#d90429';
+    } else if (parseFloat(reponse) === 7.78) {
+      feedback.textContent = '✅ Bravo ! Pour la rédaction regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754';
     } else {
-      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.';
-      feedback.style.color = '#d90429'; // rouge
+      feedback.textContent = '❌ Mauvaise réponse. Pour des explications regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerCE').addEventListener('click', () => {
+    const reponse = document.getElementById('reponseCE').value.trim().replace(',', '.');
+    const feedback = document.getElementById('feedbackCE');
+
+    if (reponse === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (parseFloat(reponse) === 2.11) {
+      feedback.textContent = '✅ Bravo ! Pour la rédaction regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Pour des explications regarde la vidéo ci-dessous.';
+      feedback.style.color = '#d90429';
     }
   });
 </script>
+
 
 
 
@@ -148,8 +140,8 @@ import '../styles/global.css';
             <iframe
               width="100%"
               height="215"
-              src="https://www.youtube.com/embed/YXrDlkF2ZcU"
-              title="Vidéo exercice 2 Pythagore"
+              src="https://www.youtube.com/embed/lb81rxDClY0"
+              title="Vidéo exercices 1 Thalès"
               frameborder="0"
               allowfullscreen>
             </iframe>
@@ -158,8 +150,8 @@ import '../styles/global.css';
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
         <ul class="link-buttons">
-          <li><a href="/docs/angledroit.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
-          <li><a href="/docs/angledroit2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+          <li><a href="/docs/thaleslongueur1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/thaleslongueur2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
         </ul>
 </section>
       </div>
@@ -167,23 +159,23 @@ import '../styles/global.css';
       <!-- PARTIE 3 -->
       <h3 class="section-title">
         <span class="arrow"></span>
-        <span class="title-text">3. Démontrer qu’un triangle est rectangle</span>
+        <span class="title-text">3. Démontrer que des droites sont parallèles</span>
         <span class="cta">Cliquez pour ouvrir ▼</span>
       </h3>
       <div class="collapsible-section">
 <section class="example-corrected" data-title="Exemple corrigé">
         <div style="text-align: center; margin-bottom: 1rem;">
-          <img src="/images/rectangle.jpeg" alt="Rectangle" style="max-width: 100%; border-radius: 12px;" />
+          <img src="/images/thalesparallele.jpeg" alt="Rectangle" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
 <div style="display: flex; gap: 1rem; max-width: 700px; margin: 1.5rem 0; font-family: system-ui, sans-serif; flex-wrap: wrap;">
   <!-- Question gauche -->
   <div style="flex: 1 1 300px; min-width: 280px;">
-    <p><strong>D'une part :</strong> 300² + 400² = ?</p>
+    <p><strong>D'une part :</strong> BI/BE = ?</p>
     <input
       type="text"
       id="reponse31"
-      placeholder="Entre ta réponse sans espace"
+      placeholder="Entre la réponse décimale"
       style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;"
     />
     <button
@@ -197,11 +189,11 @@ import '../styles/global.css';
 
   <!-- Question droite -->
   <div style="flex: 1 1 300px; min-width: 280px;">
-    <p><strong>D'autre part:</strong> 500² = ?</p>
+    <p><strong>D'autre part:</strong> BL/BR = ?</p>
     <input
       type="text"
       id="reponse32"
-      placeholder="Entre ta réponse sans espace"
+      placeholder="Entre la réponse décimale"
       style="width: 100%; padding: 0.4rem 0.6rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px; margin-bottom: 0.4rem;"
     />
     <button
@@ -233,17 +225,17 @@ import '../styles/global.css';
   }
 
   document.getElementById('valider31').addEventListener('click', () => {
-    checkAnswer('reponse31', 'feedback31', '250000');
+    checkAnswer('reponse31', 'feedback31', '0,6');
   });
 
   document.getElementById('valider32').addEventListener('click', () => {
-    checkAnswer('reponse32', 'feedback32', '250000');
+    checkAnswer('reponse32', 'feedback32', '0,6');
   });
 </script>
 <!-- Phrase à trous : démonstration -->
 <div style="margin-top: 2rem; font-family: system-ui, sans-serif; max-width: 600px;">
   <p>
-    Donc ABC est rectangle en 
+    Donc les droites (IL) et (RE) sont 
     <input
       type="text"
       id="trou1"
@@ -257,7 +249,7 @@ import '../styles/global.css';
       placeholder="?"
       style="width: 120px; padding: 0.2rem 0.4rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px;"
     />
-    du théorème de Pythagore.
+    du théorème de Thalès.
   </p>
   <button
     id="valider-trous"
@@ -277,7 +269,7 @@ import '../styles/global.css';
     if (!trou1 || !trou2) {
       feedback.textContent = 'Complète les deux champs.';
       feedback.style.color = '#d90429'; // rouge
-    } else if (trou1 === 'a' && trou2 === 'réciproque') {
+    } else if (trou1 === 'parallèles' && trou2 === 'réciproque') {
       feedback.textContent = '✅ Bravo, c’est bien la bonne rédaction !';
       feedback.style.color = '#198754'; // vert
     } else {
@@ -294,7 +286,7 @@ import '../styles/global.css';
             <iframe
               width="100%"
               height="215"
-              src="https://www.youtube.com/embed/yaSUraJrcCk"
+              src="https://www.youtube.com/embed/Yxr5BbjpmwM"
               title="Vidéo exercice 3 Pythagore"
               frameborder="0"
               allowfullscreen>
@@ -304,8 +296,9 @@ import '../styles/global.css';
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
         <ul class="link-buttons">
-          <li><a href="/docs/rectangle.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
-          <li><a href="/docs/rectangle2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+          <li><a href="/docs/thalesparallele1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/thalesparallele2.pdf" target="_blank" class="pdf-button">📘 Exercices variés contraposée (Sésamaths)</a></li>
+ 	<li><a href="/docs/thalesparallele3.pdf" target="_blank" class="pdf-button">📘 Exercices variés réciproque (Sésamaths)</a></li>
         </ul>
 </section>
       </div>
@@ -322,7 +315,7 @@ import '../styles/global.css';
           <iframe
             width="100%"
             height="215"
-            src="https://www.youtube.com/embed/asegQHSl7rQ"
+            src="https://www.youtube.com/embed/tt3DJmHRikc"
             title="Vidéo Objectif Brevet Pythagore"
             frameborder="0"
             allowfullscreen>
@@ -331,8 +324,7 @@ import '../styles/global.css';
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
         <ul class="link-buttons">
-          <li><a href="/docs/melanges.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices mélangés corrigés (MathsMentales)</a></li>
-          <li><a href="/docs/dnb.pdf" target="_blank" class="pdf-button">📘 Exercices type DNB (Sésamaths) - nécessite cosinus </a></li>
+          <li><a href="/docs/thalesdnb1.pdf" target="_blank" class="pdf-button">📘 Exercices DNB corrigés (Coopmaths) - nécessite Pythagore </a></li>
         </ul>
 </section>
       </div>

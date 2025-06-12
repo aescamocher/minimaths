@@ -138,6 +138,121 @@ import '../styles/global.css';
         </div>
 
 
+<div style="display: flex; gap: 1rem; max-width: 1000px; margin: 2rem 0; font-family: system-ui, sans-serif; flex-wrap: wrap; justify-content: space-between;">
+  
+  <!-- Question A -->
+  <div style="flex: 1 1 200px; min-width: 180px; text-align: center;">
+    <p>A = ?</p>
+    <div style="display: inline-block; position: relative; margin-top: 0.5rem;">
+      <input
+        type="text"
+        id="baseA"
+        placeholder="?"
+        style="width: 50px; padding: 0.2rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+      <input
+        type="text"
+        id="expoA"
+        placeholder="?"
+        style="position: absolute; top: -0.8rem; right: -1.2rem; width: 35px; font-size: 0.8rem; padding: 0.1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+    </div>
+    <br />
+    <button
+      id="validerA"
+      style="margin-top: 0.6rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackA" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question B -->
+  <div style="flex: 1 1 200px; min-width: 180px; text-align: center;">
+    <p>B = ?</p>
+    <div style="display: inline-block; position: relative; margin-top: 0.5rem;">
+      <input
+        type="text"
+        id="baseB"
+        placeholder="?"
+        style="width: 50px; padding: 0.2rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+      <input
+        type="text"
+        id="expoB"
+        placeholder="?"
+        style="position: absolute; top: -0.8rem; right: -1.2rem; width: 35px; font-size: 0.8rem; padding: 0.1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+    </div>
+    <br />
+    <button
+      id="validerB"
+      style="margin-top: 0.6rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackB" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question C -->
+  <div style="flex: 1 1 200px; min-width: 180px; text-align: center;">
+    <p>C = ?</p>
+    <div style="display: inline-block; position: relative; margin-top: 0.5rem;">
+      <input
+        type="text"
+        id="baseC"
+        placeholder="?"
+        style="width: 50px; padding: 0.2rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+      <input
+        type="text"
+        id="expoC"
+        placeholder="?"
+        style="position: absolute; top: -0.8rem; right: -1.2rem; width: 35px; font-size: 0.8rem; padding: 0.1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+    </div>
+    <br />
+    <button
+      id="validerC"
+      style="margin-top: 0.6rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackC" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  function verifier(baseId, expoId, feedbackId, bonneBase, bonExposant) {
+    const base = document.getElementById(baseId).value.trim();
+    const expo = document.getElementById(expoId).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (base === '' || expo === '') {
+      feedback.textContent = 'Remplis les deux champs.';
+      feedback.style.color = '#d90429';
+    } else if (base === bonneBase && expo === bonExposant) {
+      feedback.textContent = '✅ Bravo ! Pour plus de détails regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo ci-dessous pour comprendre.';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  document.getElementById('validerA').addEventListener('click', () => {
+    verifier('baseA', 'expoA', 'feedbackA', '10', '5');
+  });
+
+  document.getElementById('validerB').addEventListener('click', () => {
+    verifier('baseB', 'expoB', 'feedbackB', '10', '1');
+  });
+
+  document.getElementById('validerC').addEventListener('click', () => {
+    verifier('baseC', 'expoC', 'feedbackC', '2', '6');
+  });
+</script>
+
 
 
         <details style="margin-bottom: 1rem;">
@@ -173,6 +288,109 @@ import '../styles/global.css';
         <div style="text-align: center; margin-bottom: 1rem;">
           <img src="/images/puissance3.jpeg" alt="Puissance3" style="max-width: 100%; border-radius: 12px;" />
         </div>
+
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; flex-wrap: nowrap;">
+
+  <!-- Question A -->
+  <div style="text-align: center;">
+    <p style="margin-bottom: 0.5rem;">A = ?</p>
+    <div style="display: flex; align-items: flex-start; justify-content: center; position: relative;">
+      <input
+        type="text"
+        id="mantisseD1"
+        placeholder="?"
+        style="width: 30px; padding: 0.2rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+      />
+      <span style="margin: 0 0.2rem; font-size: 1rem;">×</span>
+      <span style="position: relative;">
+        <input
+          type="text"
+          value="10"
+          disabled
+          style="width: 30px; padding: 0.2rem; font-size: 1rem; border: none; background: white;"
+        />
+        <input
+          type="text"
+          id="expoD1"
+          placeholder="?"
+          style="position: absolute; top: -0.9rem; right: -0.9rem; width: 30px; font-size: 0.8rem; padding: 0.1rem; border: 1.5px solid #ccc; border-radius: 4px;"
+        />
+      </span>
+    </div>
+    <button
+      id="validerD1"
+      style="margin-top: 0.6rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackD1" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question B -->
+  <div style="text-align: center;">
+    <p style="margin-bottom: 0.5rem;">B = ?</p>
+    <input
+      type="text"
+      id="reponseD2"
+      placeholder="réponse entière"
+      style="width: 180px; padding: 0.3rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px;"
+    />
+    <br />
+    <button
+      id="validerD2"
+      style="margin-top: 0.6rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackD2" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  function verifierPuissance(mantisseId, exposantId, feedbackId, bonneMantisse, bonExposant) {
+    const m = document.getElementById(mantisseId).value.trim().replace(',', '.');
+    const e = document.getElementById(exposantId).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (m === '' || e === '') {
+      feedback.textContent = 'Remplis les deux champs.';
+      feedback.style.color = '#d90429';
+    } else if (m === bonneMantisse && e === bonExposant) {
+      feedback.textContent = '✅ Bravo ! Pour plus de détails regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo ci-dessous pour comprendre.';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  function verifierSimple(inputId, feedbackId, bonneReponse) {
+    const val = document.getElementById(inputId).value.trim().replace(/\s/g, '');
+    const feedback = document.getElementById(feedbackId);
+
+    if (val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (val === bonneReponse) {
+      feedback.textContent = '✅ Bravo ! Pour plus de détails regarde la vidéo ci-dessous.';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous pour comprendre.';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  document.getElementById('validerD1').addEventListener('click', () => {
+    verifierPuissance('mantisseD1', 'expoD1', 'feedbackD1', '1.2', '-10');
+  });
+
+  document.getElementById('validerD2').addEventListener('click', () => {
+    verifierSimple('reponseD2', 'feedbackD2', '530000000000');
+  });
+</script>
+
+
+
 
         <details style="margin-bottom: 1rem;">
           <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
