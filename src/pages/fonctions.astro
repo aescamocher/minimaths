@@ -25,6 +25,61 @@ import '../styles/global.css';
 <div class="collapsible-section">
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fonctionse1.jpeg" alt="Fractions même" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; flex-direction: column; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <div style="display: flex; align-items: flex-end; gap: 1.5rem;">
+    <!-- Champ fonction -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="astroFct1" style="font-weight: 600; margin-bottom: 0.3rem;">fonction :</label>
+      <input id="astroFct1" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+
+    <!-- Champ antécédent -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="astroFct2" style="font-weight: 600; margin-bottom: 0.3rem;">antécédent :</label>
+      <input id="astroFct2" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+
+    <!-- Champ image -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="astroFct3" style="font-weight: 600; margin-bottom: 0.3rem;">image :</label>
+      <input id="astroFct3" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+  </div>
+
+  <button
+    id="validerAstroFct"
+    style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600; align-self: start;"
+  >
+    Valider
+  </button>
+
+  <p id="feedbackAstroFct" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('validerAstroFct').addEventListener('click', () => {
+    const v1 = document.getElementById('astroFct1').value.trim();
+    const v2 = document.getElementById('astroFct2').value.trim();
+    const v3 = document.getElementById('astroFct3').value.trim();
+    const feedback = document.getElementById('feedbackAstroFct');
+
+    if (v1 === 'f' && v2 === 'x' && v3 === '3x') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Il y a au moins une mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+     <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
       <div class="video">
         <iframe
           width="100%"
@@ -35,6 +90,7 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
@@ -52,6 +108,87 @@ import '../styles/global.css';
 <div class="collapsible-section">
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fonctionse2.jpeg" alt="Fractions même" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; flex-direction: column; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <div style="display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;">
+    
+    <!-- f(-4) = ? -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label for="f4val" style="font-weight: 600; margin-bottom: 0.3rem;">f(-4) =</label>
+      <input id="f4val" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <button
+        id="validerF4"
+        style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+      >
+        Valider
+      </button>
+      <p id="feedbackF4" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+    </div>
+
+    <!-- Antécédents de -3 -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <label style="font-weight: 600; margin-bottom: 0.3rem;">Antécédents de -3</label>
+      <div style="display: flex; gap: 0.5rem;">
+        <input id="antecedent1" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+        <input id="antecedent2" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      </div>
+      <button
+        id="validerAntecedents"
+        style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+      >
+        Valider
+      </button>
+      <p id="feedbackAntecedents" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('validerF4').addEventListener('click', () => {
+    const valF = document.getElementById('f4val').value.trim();
+    const feedback = document.getElementById('feedbackF4');
+
+    if (valF === '5') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else if(valF === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerAntecedents').addEventListener('click', () => {
+    const a1 = document.getElementById('antecedent1').value.trim();
+    const a2 = document.getElementById('antecedent2').value.trim();
+    const feedback = document.getElementById('feedbackAntecedents');
+
+    const correctSet = new Set(['-2', '0']);
+
+    if (correctSet.has(a1) && correctSet.has(a2) && a1 !== a2) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else if (a1 === '' || a2 === '') {
+      feedback.textContent = 'Entre toutes les réponses.';
+      feedback.style.color = '#d90429';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Essaie encore ou regarde la vidéo.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+
+
+     <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
       <div class="video">
         <iframe
           width="100%"
@@ -62,6 +199,7 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
@@ -78,6 +216,101 @@ import '../styles/global.css';
 <div class="collapsible-section">
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fonctionse3.jpeg" alt="Fractions même" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0; display: flex; gap: 2rem; flex-wrap: wrap;">
+
+  <!-- Question 1 -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="q1" style="font-weight: 600; margin-bottom: 0.3rem;">f(5) =</label>
+    <input id="q1" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerQ1" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackQ1" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 2 -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="q2" style="font-weight: 600; margin-bottom: 0.3rem;">f(-11) =</label>
+    <input id="q2" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerQ2" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackQ2" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 3 -->
+  <div style="flex: 1 1 260px; display: flex; flex-direction: column; align-items: center;">
+    <label style="font-weight: 600; margin-bottom: 0.3rem;">Antécédents de 44</label>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.3rem;">
+      <input id="q3a" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q3b" placeholder="?" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button id="validerQ3" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackQ3" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('validerQ1').addEventListener('click', () => {
+    const val = document.getElementById('q1').value.trim();
+    const feedback = document.getElementById('feedbackQ1');
+    if(val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if(val === '-75') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerQ2').addEventListener('click', () => {
+    const val = document.getElementById('q2').value.trim();
+    const feedback = document.getElementById('feedbackQ2');
+    if(val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if(val === '21') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerQ3').addEventListener('click', () => {
+    const a = document.getElementById('q3a').value.trim();
+    const b = document.getElementById('q3b').value.trim();
+    const feedback = document.getElementById('feedbackQ3');
+    const correctSet = new Set(['12','-12']);
+    if(a === '' || b === '') {
+      feedback.textContent = 'Entre toutes les réponses.';
+      feedback.style.color = '#d90429';
+    } else if(correctSet.has(a) && correctSet.has(b) && a !== b) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+
+     <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
       <div class="video">
         <iframe
           width="100%"
@@ -88,6 +321,7 @@ import '../styles/global.css';
           allowfullscreen>
         </iframe>
       </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
