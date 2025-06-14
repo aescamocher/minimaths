@@ -14,6 +14,14 @@ import '../styles/global.css';
     <main class="container">
       <h2>Fractions</h2>
 
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/fractionsresume.jpeg" alt="Fractions schéma" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « On peut utiliser des représentations graphiques pour mieux comprendre les fractions. »
+        </p>
+      </div>
+
       <!-- Partie 1 -->
       <h3 class="section-title">
         <span class="arrow"></span>
@@ -23,6 +31,76 @@ import '../styles/global.css';
       <div class="collapsible-section">
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fractionsmeme.jpeg" alt="Fractions même" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; align-items: flex-start; gap: 1rem; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <!-- Label A = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">A =&nbsp;</p>
+
+  <!-- Groupe 1 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG1a" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG1b" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG1"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG1" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Signe égal -->
+  <span style="font-size: 1.4rem; margin-top: 0.9rem;">=</span>
+
+
+  <!-- Groupe 2 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG2a" placeholder="simplifier" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG2b" placeholder="simplifier" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG2"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG2" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  function verifierBloc(idA, idB, attenduA, attenduB, feedbackId) {
+    const v1 = document.getElementById(idA).value.trim();
+    const v2 = document.getElementById(idB).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (v1 === attenduA && v2 === attenduB) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  // Bloc gauche : 2 (haut), 6 (bas)
+  document.getElementById('validerG1').addEventListener('click', () => {
+    verifierBloc('champG1a', 'champG1b', '2', '6', 'feedbackG1');
+  });
+
+  // Bloc droite : 1 (haut), 3 (bas)
+  document.getElementById('validerG2').addEventListener('click', () => {
+    verifierBloc('champG2a', 'champG2b', '1', '3', 'feedbackG2');
+  });
+</script>
+
+
+
+        <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
 <div class="video">
   <iframe width="100%" height="215"
     src="https://www.youtube.com/embed/VTfPbv6MVAI"
@@ -31,9 +109,13 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/fractionsmeme1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>          
+        </ul>
 </section>
 
      </div>
@@ -46,17 +128,69 @@ import '../styles/global.css';
       <div class="collapsible-section">
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
-<div class="video">
-  <iframe width="100%" height="215"
-    src="https://www.youtube.com/embed/9lxvnaa6jis"
-    title="Vidéo [sujet]"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fractionsdiff.jpeg" alt="Fractions différent" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; align-items: flex-start; gap: 1rem; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <!-- Label A = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">B =&nbsp;</p>
+
+  <!-- Groupe 1 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG3a" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG3b" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG3"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG3" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
 </div>
+
+<script>
+  function verifierBloc(idA, idB, attenduA, attenduB, feedbackId) {
+    const v1 = document.getElementById(idA).value.trim();
+    const v2 = document.getElementById(idB).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (v1 === attenduA && v2 === attenduB) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  // Bloc gauche : 5 (haut), 6 (bas)
+  document.getElementById('validerG3').addEventListener('click', () => {
+    verifierBloc('champG3a', 'champG3b', '5', '6', 'feedbackG3');
+  });
+</script>
+
+<details>
+  <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
+  <div class="video">
+    <iframe width="100%" height="215"
+      src="https://www.youtube.com/embed/9lxvnaa6jis"
+      title="Vidéo [sujet]"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+</details>
+
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/fractionsdifferent1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/fractionsdifferent2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+        </ul>
 </section>
 
 </div>
@@ -70,6 +204,74 @@ import '../styles/global.css';
 
 
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fractionsmulti.jpeg" alt="Fractions multiplier" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; align-items: flex-start; gap: 1rem; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <!-- Label C = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">C =&nbsp;</p>
+
+  <!-- Groupe 1 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG5a" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG5b" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG5"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG5" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Signe égal -->
+  <span style="font-size: 1.4rem; margin-top: 0.9rem;">=</span>
+
+  <!-- Groupe 2 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG6a" placeholder="simplifier" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG6b" placeholder="simplifier" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG6"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG6" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  function verifierBloc(idA, idB, attenduA, attenduB, feedbackId) {
+    const v1 = document.getElementById(idA).value.trim();
+    const v2 = document.getElementById(idB).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (v1 === attenduA && v2 === attenduB) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  // Bloc gauche : 6 (haut), 12 (bas)
+  document.getElementById('validerG5').addEventListener('click', () => {
+    verifierBloc('champG5a', 'champG5b', '6', '12', 'feedbackG5');
+  });
+
+  // Bloc droite : 1 (haut), 2 (bas)
+  document.getElementById('validerG6').addEventListener('click', () => {
+    verifierBloc('champG6a', 'champG6b', '1', '2', 'feedbackG6');
+  });
+</script>
+
+
+      <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
 <div class="video">
   <iframe width="100%" height="215"
     src="https://www.youtube.com/embed/EANx5PPkYFc"
@@ -78,9 +280,14 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/fractionsmultiplier1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/fractionsmultiplier2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+        </ul>
 </section>
 
 </div>
@@ -94,6 +301,86 @@ import '../styles/global.css';
       <div class="collapsible-section">
  
 <section class="example-corrected" data-title="Exemple corrigé"> 
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/fractionsdiv.jpeg" alt="Fractions diviser" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; align-items: flex-start; gap: 1rem; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <!-- Label D = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">D =&nbsp;</p>
+
+  <!-- Groupe gauche (45 / 14) -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG7a" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champG7b" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG7"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG7" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Signe environ égal -->
+  <span style="font-size: 1.4rem; margin-top: 0.9rem;">≈</span>
+
+  <!-- Groupe droite (réponse unique : 3) -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champG8" placeholder="valeur approchée" style="width: 100px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerG8"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackG8" style="margin-top: 0.6rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  function verifierBloc(idA, idB, attenduA, attenduB, feedbackId) {
+    const v1 = document.getElementById(idA).value.trim();
+    const v2 = document.getElementById(idB).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (v1 === attenduA && v2 === attenduB) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  function verifierSimple(id, attendu, feedbackId) {
+    const v = document.getElementById(id).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (v === attendu) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Regarde la vidéo !';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  // Bloc gauche : 45 (haut), 14 (bas)
+  document.getElementById('validerG7').addEventListener('click', () => {
+    verifierBloc('champG7a', 'champG7b', '45', '14', 'feedbackG7');
+  });
+
+  // Bloc droite : 3
+  document.getElementById('validerG8').addEventListener('click', () => {
+    verifierSimple('champG8', '3', 'feedbackG8');
+  });
+</script>
+
+
+      <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
 <div class="video">
   <iframe width="100%" height="215"
     src="https://www.youtube.com/embed/2YUGQPoeI24"
@@ -102,9 +389,14 @@ import '../styles/global.css';
     allowfullscreen>
   </iframe>
 </div>
+</details>
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/fractionsdiviser1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
+          <li><a href="/docs/fractionsdiviser2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+        </ul>
 </section>
 
 </div>
@@ -129,6 +421,10 @@ import '../styles/global.css';
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/fractionsdnb1.pdf" target="_blank" class="pdf-button">📘 Exercices mélangés (Sésamaths)</a></li>
+          <li><a href="/docs/fractionsdnb2.pdf" target="_blank" class="pdf-button">📘 Exercices DNB corrigés (Coopmaths)</a></li>
+        </ul>
 </section>
 
       </div>
