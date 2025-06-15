@@ -1,0 +1,490 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Equations</title>
+<meta name="description" content="Exercices interactifs corrigés sur les équations au collège." />
+
+
+  </head>
+
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Equations</h2>
+
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/eqresume.jpeg" alt="Résoudre une équation" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Résoudre une équation, c'est trouver la ou les valeurs de l'inconnue telle que l'égalité soit vraie. »
+        </p>
+      </div>
+
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. ax = b</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/eq1.jpeg" alt="Equations 1" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; flex-wrap: wrap;">
+  <!-- Question x = -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="champX" style="font-weight: 600; margin-bottom: 0.3rem;">x =</label>
+    <input id="champX" placeholder="?" style="width: 70px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerX" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackX" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question y = -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="champY" style="font-weight: 600; margin-bottom: 0.3rem;">y =</label>
+    <input id="champY" placeholder="?" style="width: 70px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerY" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackY" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('validerX').addEventListener('click', () => {
+    const val = document.getElementById('champX').value.trim().replace(',', '.');
+    const feedback = document.getElementById('feedbackX');
+    if (val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (val === '5.5') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerY').addEventListener('click', () => {
+    const val = document.getElementById('champY').value.trim().replace(',', '.');
+    const feedback = document.getElementById('feedbackY');
+    if (val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (val === '-2.5') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationsa1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Mathsmentales)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. a+x = b</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/eq2.jpeg" alt="Equations 2" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; flex-wrap: wrap;">
+  <!-- Question gauche -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="champGauche2" style="font-weight: 600; margin-bottom: 0.3rem;">x =</label>
+    <input id="champGauche2" placeholder="?" style="width: 70px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerGauche2" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackGauche2" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question droite -->
+  <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: center;">
+    <label for="champDroite2" style="font-weight: 600; margin-bottom: 0.3rem;">y =</label>
+    <input id="champDroite2" placeholder="?" style="width: 70px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button id="validerDroite2" style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;">
+      Valider
+    </button>
+    <p id="feedbackDroite2" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('validerGauche2').addEventListener('click', () => {
+    const val = document.getElementById('champGauche2').value.trim();
+    const feedback = document.getElementById('feedbackGauche2');
+    if (val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (val === '-16') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerDroite2').addEventListener('click', () => {
+    const val = document.getElementById('champDroite2').value.trim();
+    const feedback = document.getElementById('feedbackDroite2');
+    if (val === '') {
+      feedback.textContent = 'Entre une réponse.';
+      feedback.style.color = '#d90429';
+    } else if (val === '25') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+  
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationsb1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Mathsmentales)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. ax+b = cx+d</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+      
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/eq3.jpeg" alt="Equations 3" style="max-width: 100%; border-radius: 12px;" />
+        </div> 
+
+<div style="display: flex; align-items: flex-start; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <!-- x = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">x =&nbsp;</p>
+
+  <!-- Groupe gauche : 5 / 3 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champFracG1" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champFracG2" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerFracG"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackFracG" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- y = -->
+  <p style="font-weight: bold; margin-top: 1.1rem;">y =&nbsp;</p>
+
+  <!-- Groupe droite : -3 / 2 -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <input id="champFracD1" placeholder="?" style="width: 50px; text-align: center; margin-bottom: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champFracD2" placeholder="?" style="width: 50px; text-align: center; margin-top: 0.3rem; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <button
+      id="validerFracD"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackFracD" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  // x = 5 / 3
+  document.getElementById('validerFracG').addEventListener('click', () => {
+    const num = document.getElementById('champFracG1').value.trim();
+    const den = document.getElementById('champFracG2').value.trim();
+    const feedback = document.getElementById('feedbackFracG');
+    if (num === '5' && den === '3') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  // y = -3 / 2
+  document.getElementById('validerFracD').addEventListener('click', () => {
+    const num = document.getElementById('champFracD1').value.trim();
+    const den = document.getElementById('champFracD2').value.trim();
+    const feedback = document.getElementById('feedbackFracD');
+    if (num === '-3' && den === '2') {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+    
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationsc1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Mathsmentales)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. x² = a</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+     
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/eq4.jpeg" alt="Equations 4" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; align-items: flex-start;">
+  <!-- Groupe X -->
+  <div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <label for="champX1_4">x =</label>
+      <input id="champX1_4" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <label for="champX2_4">x =</label>
+      <input id="champX2_4" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerX4"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackX4" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Groupe Y -->
+  <div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <label for="champY1_4">y =</label>
+      <input id="champY1_4" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <label for="champY2_4">y =</label>
+      <input id="champY2_4" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerY4"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackY4" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+    document.getElementById('validerX4').addEventListener('click', () => {
+      const x1 = document.getElementById('champX1_4').value.trim();
+      const x2 = document.getElementById('champX2_4').value.trim();
+      const feedback = document.getElementById('feedbackX4');
+      const values = [x1, x2];
+      if (values.includes('13') && values.includes('-13')) {
+        feedback.textContent = '✅ Bravo !';
+        feedback.style.color = '#198754';
+      } else {
+        feedback.textContent = '❌ Mauvaise réponse.';
+        feedback.style.color = '#d90429';
+      }
+    });
+
+    document.getElementById('validerY4').addEventListener('click', () => {
+      const y1 = document.getElementById('champY1_4').value.trim();
+      const y2 = document.getElementById('champY2_4').value.trim();
+      const feedback = document.getElementById('feedbackY4');
+      const values = [y1, y2];
+      if (values.includes('11') && values.includes('-11')) {
+        feedback.textContent = '✅ Bravo !';
+        feedback.style.color = '#198754';
+      } else {
+        feedback.textContent = '❌ Mauvaise réponse.';
+        feedback.style.color = '#d90429';
+      }
+    });
+  };
+</script>
+
+
+  
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationsd1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Mathsmentales)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. Produit nul</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/eq5.jpeg" alt="Equations 5" style="max-width: 100%; border-radius: 12px;" />
+        </div>  
+
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; align-items: flex-start;">
+  <!-- Groupe X -->
+  <div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <label for="champX355">x =</label>
+      <input id="champX355" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <label for="champX455">x =</label>
+      <input id="champX455" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerX355"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackX355" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Groupe Y -->
+  <div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <label for="champY355">y =</label>
+      <input id="champY355" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <label for="champY455">y =</label>
+      <input id="champY455" placeholder="?" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerY355"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackY355" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('validerX355').addEventListener('click', () => {
+    const x1 = document.getElementById('champX355').value.trim();
+    const x2 = document.getElementById('champX455').value.trim();
+    const feedback = document.getElementById('feedbackX355');
+    const values = [x1, x2];
+    if (values.includes('3') && values.includes('-7')) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+
+  document.getElementById('validerY355').addEventListener('click', () => {
+    const y1 = document.getElementById('champY355').value.trim();
+    const y2 = document.getElementById('champY455').value.trim();
+    const feedback = document.getElementById('feedbackY355');
+    const values = [y1, y2];
+    if (values.includes('0,4') && values.includes('9')) {
+      feedback.textContent = '✅ Bravo !';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+
+
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationse1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Mathsmentales)</a></li>
+        </ul>
+</section>
+
+</section>
+
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">6. Objectif brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="QCM BILAN">
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/oo0O361ti2E"
+          title="QCM Fractions"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/equationsf1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices variés (Sésamaths)</a></li>
+          <li><a href="/docs/equationsf2.pdf" target="_blank" class="pdf-button">📘 Problèmes variés (Sésamaths)</a></li>
+        </ul>
+</section>
+
+</div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
