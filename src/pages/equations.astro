@@ -400,9 +400,13 @@ import '../styles/global.css';
 </div>
 
 <script>
+  function normalize(value) {
+    return value.replace(',', '.');
+  }
+
   document.getElementById('validerX355').addEventListener('click', () => {
-    const x1 = document.getElementById('champX355').value.trim();
-    const x2 = document.getElementById('champX455').value.trim();
+    const x1 = normalize(document.getElementById('champX355').value.trim());
+    const x2 = normalize(document.getElementById('champX455').value.trim());
     const feedback = document.getElementById('feedbackX355');
     const values = [x1, x2];
     if (values.includes('3') && values.includes('-7')) {
@@ -415,11 +419,11 @@ import '../styles/global.css';
   });
 
   document.getElementById('validerY355').addEventListener('click', () => {
-    const y1 = document.getElementById('champY355').value.trim();
-    const y2 = document.getElementById('champY455').value.trim();
+    const y1 = normalize(document.getElementById('champY355').value.trim());
+    const y2 = normalize(document.getElementById('champY455').value.trim());
     const feedback = document.getElementById('feedbackY355');
     const values = [y1, y2];
-    if (values.includes('0,4') && values.includes('9')) {
+    if (values.includes('0.4') && values.includes('9')) {
       feedback.textContent = '✅ Bravo !';
       feedback.style.color = '#198754';
     } else {
@@ -428,6 +432,7 @@ import '../styles/global.css';
     }
   });
 </script>
+
 
 
 
