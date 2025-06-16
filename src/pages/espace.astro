@@ -1,0 +1,371 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Espace</title>
+<meta name="description" content="Exercices interactifs corrigés sur la géométrie dans l'espace au collège." />
+
+
+  </head>
+
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Espace</h2>
+
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/perspective.jpeg" alt="Perspective cavalière" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Pour représenter un solide, on peut utiliser la perspective cavalière. »
+        </p>
+      </div>
+
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Repérage - Pavé droit</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/reperagepave.jpeg" alt="Pavé droit" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; flex-wrap: wrap;">
+
+  <!-- Question gauche : Coordonnées de M -->
+  <div style="flex: 1 1 300px; min-width: 260px;">
+    <p><strong>Coordonnées de M :</strong></p>
+    <div style="display: flex; gap: 0.5rem;">
+      <input id="mX" placeholder="x" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="mY" placeholder="y" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="mZ" placeholder="z" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerM"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackM" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question droite : Coordonnées de T -->
+  <div style="flex: 1 1 300px; min-width: 260px;">
+    <p><strong>Coordonnées de T :</strong></p>
+    <div style="display: flex; gap: 0.5rem;">
+      <input id="tX" placeholder="x" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="tY" placeholder="y" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="tZ" placeholder="z" style="width: 50px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerT"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackT" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+</div>
+
+<script>
+  function verifierCoordonnees(xId, yId, zId, xVal, yVal, zVal, feedbackId) {
+    const x = document.getElementById(xId).value.trim();
+    const y = document.getElementById(yId).value.trim();
+    const z = document.getElementById(zId).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (x === xVal && y === yVal && z === zVal) {
+      feedback.textContent = "✅ Bravo !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Mauvaise réponse. Essaie encore.";
+      feedback.style.color = "#d90429";
+    }
+  }
+
+  // M : (4,2,0)
+  document.getElementById("validerM").addEventListener("click", () => {
+    verifierCoordonnees("mX", "mY", "mZ", "4", "2", "0", "feedbackM");
+  });
+
+  // T : (0,2,3)
+  document.getElementById("validerT").addEventListener("click", () => {
+    verifierCoordonnees("tX", "tY", "tZ", "0", "2", "3", "feedbackT");
+  });
+</script>
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+       
+          <li><a href="/docs/reperagepave.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Repérage - Sphère</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/reperagesphere.jpeg" alt="Repérage sphère" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+<div style="display: flex; gap: 2rem; font-family: system-ui, sans-serif; margin: 2rem 0; flex-wrap: wrap;">
+
+  <!-- Question gauche : Coordonnées de E -->
+  <div style="flex: 1 1 300px; min-width: 260px;">
+    <p><strong>Coordonnées de E :</strong></p>
+    <div style="display: flex; gap: 0.5rem;">
+      <input id="eCoord1" placeholder="ex: 70°S" style="width: 80px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="eCoord2" placeholder="ex: 45°O" style="width: 80px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerE"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackE" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question droite : Coordonnées de B -->
+  <div style="flex: 1 1 300px; min-width: 260px;">
+    <p><strong>Coordonnées de B :</strong></p>
+    <div style="display: flex; gap: 0.5rem;">
+      <input id="bCoord1" placeholder="ex: 70°S" style="width: 80px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="bCoord2" placeholder="ex: 45°O" style="width: 80px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerB"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackB" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+</div>
+
+<script>
+  function verifierCoordonneesFlexibles(id1, id2, valA, valB, feedbackId) {
+    const v1 = document.getElementById(id1).value.trim().toUpperCase();
+    const v2 = document.getElementById(id2).value.trim().toUpperCase();
+    const feedback = document.getElementById(feedbackId);
+
+    const isValid =
+      (v1 === valA && v2 === valB) || (v1 === valB && v2 === valA);
+
+    if (isValid) {
+      feedback.textContent = "✅ Bravo !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Mauvaise réponse. Essaie encore.";
+      feedback.style.color = "#d90429";
+    }
+  }
+
+  // Coordonnées de E : 30°N et 30°E
+  document.getElementById("validerE").addEventListener("click", () => {
+    verifierCoordonneesFlexibles("eCoord1", "eCoord2", "30°N", "30°E", "feedbackE");
+  });
+
+  // Coordonnées de B : 10°S et 60°O
+  document.getElementById("validerB").addEventListener("click", () => {
+    verifierCoordonneesFlexibles("bCoord1", "bCoord2", "10°S", "60°O", "feedbackB");
+  });
+</script>
+
+  
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          
+          <li><a href="/docs/reperagesphere.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Volume - Droit</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+      
+<section class="example-corrected" data-title="Exemple corrigé">
+
+    
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Volume - Circulaire</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+     
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/volumecirculaire.jpeg" alt="Volume circulaire" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; font-family: system-ui, sans-serif; margin: 2rem 0;">
+
+  <!-- Volume A -->
+  <div style="flex: 1 1 220px; min-width: 200px;">
+    <p><strong>Volume A =</strong> (en cm³, approché à l'unité)</p>
+    <input
+      id="volA123"
+      placeholder="?"
+      style="width: 100%; text-align: center; padding: 0.4rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px;"
+    />
+    <button
+      id="validerVolA123"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackVolA123" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Volume B -->
+  <div style="flex: 1 1 220px; min-width: 200px;">
+    <p><strong>Volume B =</strong> (en cm³, approché à l'unité)</p>
+    <input
+      id="volB123"
+      placeholder="?"
+      style="width: 100%; text-align: center; padding: 0.4rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px;"
+    />
+    <button
+      id="validerVolB123"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackVolB123" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Volume C -->
+  <div style="flex: 1 1 220px; min-width: 200px;">
+    <p><strong>Volume C =</strong> (en cm³, approché à l'unité)</p>
+    <input
+      id="volC123"
+      placeholder="?"
+      style="width: 100%; text-align: center; padding: 0.4rem; font-size: 1rem; border: 1.5px solid #ccc; border-radius: 6px;"
+    />
+    <button
+      id="validerVolC123"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackVolC123" style="margin-top: 0.4rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+</div>
+
+<script>
+  function verifierVolume(inputId, feedbackId, reponse) {
+    const val = document.getElementById(inputId).value.trim();
+    const feedback = document.getElementById(feedbackId);
+
+    if (val === reponse) {
+      feedback.textContent = "✅ Bravo ! Regarde la vidéo pour les explications.";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Ce n’est pas la bonne réponse. Regarde la vidéo ci-dessous.";
+      feedback.style.color = "#d90429";
+    }
+  }
+
+  document.getElementById("validerVolA123").addEventListener("click", () => {
+    verifierVolume("volA123", "feedbackVolA123", "397");
+  });
+
+  document.getElementById("validerVolB123").addEventListener("click", () => {
+    verifierVolume("volB123", "feedbackVolB123", "65");
+  });
+
+  document.getElementById("validerVolC123").addEventListener("click", () => {
+    verifierVolume("volC123", "feedbackVolC123", "4849");
+  });
+</script>
+
+  
+        <details >
+          <summary style="cursor: pointer; font-weight: bold;">Voir la correction détaillée avec explications en vidéo </summary>
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/8uKfmZxv6_o"
+          title="Volumes circulaires"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+   </details>
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/volumes.pdf" target="_blank" class="pdf-button">📘 Exercices variés avec corrections (Mathsmentales)</a></li>
+        </ul>
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. Objectif Brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="QCM BILAN">
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/roeETdgyTxQ"
+          title="QCM Espace"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
