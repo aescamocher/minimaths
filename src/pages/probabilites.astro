@@ -19,7 +19,7 @@ import '../styles/global.css';
       <div style="margin-bottom: 2rem;">
         <img src="/images/probasresume.jpeg" alt="Probabilités schéma" style="width: 100%; border-radius: 12px;" />
         <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
-          « Différentes façons de représenter une même fonction. »
+          « Pour calculer des probabilités dans une expérience aléatoire à deux épreuves, on peut utiliser un arbre ou un tableau à double entrée. »
         </p>
       </div>
 
@@ -38,6 +38,70 @@ import '../styles/global.css';
           <img src="/images/probas0.jpeg" alt="Probabilité vocabulaire" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0; display: grid; gap: 1.5rem; max-width: 600px;">
+
+  <!-- Question A -->
+  <div>
+    <label for="qa" style="font-weight: bold;">A est un évènement composé de plusieurs&nbsp;:</label>
+    <input id="qa" placeholder="?" style="width: 150px; margin-left: 0.5rem; padding: 0.3rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    <button id="validerA" style="margin-left: 0.5rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedbackA" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question B -->
+  <div>
+    <label for="qb" style="font-weight: bold;">B est un évènement&nbsp;:</label>
+    <input id="qb" placeholder="?" style="width: 150px; margin-left: 0.5rem; padding: 0.3rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    <button id="validerB" style="margin-left: 0.5rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedbackB" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question C -->
+  <div>
+    <label for="qc" style="font-weight: bold;">C est un évènement&nbsp;:</label>
+    <input id="qc" placeholder="?" style="width: 150px; margin-left: 0.5rem; padding: 0.3rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    <button id="validerC" style="margin-left: 0.5rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedbackC" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question D -->
+  <div>
+    <label for="qd" style="font-weight: bold;">D est l'évènement <i>...</i> de l’évènement A&nbsp;:</label>
+    <input id="qd" placeholder="?" style="width: 150px; margin-left: 0.5rem; padding: 0.3rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    <button id="validerD" style="margin-left: 0.5rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedbackD" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+</div>
+
+<script>
+  function validerChamp(idInput, bonneReponse, idFeedback) {
+    const reponse = document.getElementById(idInput).value.trim().toLowerCase();
+    const feedback = document.getElementById(idFeedback);
+    if (reponse === bonneReponse) {
+      feedback.textContent = '✅';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  document.getElementById('validerA').addEventListener('click', () => {
+    validerChamp('qa', 'issues', 'feedbackA');
+  });
+
+  document.getElementById('validerB').addEventListener('click', () => {
+    validerChamp('qb', 'impossible', 'feedbackB');
+  });
+
+  document.getElementById('validerC').addEventListener('click', () => {
+    validerChamp('qc', 'certain', 'feedbackC');
+  });
+
+  document.getElementById('validerD').addEventListener('click', () => {
+    validerChamp('qd', 'contraire', 'feedbackD');
+  });
+</script>
 
 
 
@@ -68,6 +132,86 @@ import '../styles/global.css';
 
 
 
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0; display: grid; gap: 1.5rem;">
+
+  <!-- Question p(A) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(A) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pA_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pA_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pA" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pA" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question p(B) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(B) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pB_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pB_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pB" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pB" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question p(C) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(C) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pC_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pC_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pC" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pC" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question p(D) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(D) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pD_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pD_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pD" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pD" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+</div>
+
+<script>
+  function validerFraction(idNum, idDen, bonnesFractions, feedbackId) {
+    const n = parseInt(document.getElementById(idNum).value.trim(), 10);
+    const d = parseInt(document.getElementById(idDen).value.trim(), 10);
+    const feedback = document.getElementById(feedbackId);
+
+    const isCorrect = bonnesFractions.some(([bn, bd]) => n * bd === d * bn);
+
+    if (isCorrect) {
+      feedback.textContent = '✅';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  document.getElementById('valider_pA').addEventListener('click', () => {
+    validerFraction('pA_num', 'pA_den', [[1,6]], 'feedback_pA');
+  });
+
+  document.getElementById('valider_pB').addEventListener('click', () => {
+    validerFraction('pB_num', 'pB_den', [[2,6],[1,3]], 'feedback_pB');
+  });
+
+  document.getElementById('valider_pC').addEventListener('click', () => {
+    validerFraction('pC_num', 'pC_den', [[3,6],[1,2]], 'feedback_pC');
+  });
+
+  document.getElementById('valider_pD').addEventListener('click', () => {
+    validerFraction('pD_num', 'pD_den', [[5,6]], 'feedback_pD');
+  });
+</script>
 
 
 
@@ -95,6 +239,72 @@ import '../styles/global.css';
           <img src="/images/probas2.jpeg" alt="Probabilités 2 épreuves" style="max-width: 100%; border-radius: 12px;" />
         </div>
 
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0; display: grid; gap: 1.5rem;">
+
+  <!-- Question p(A) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(A) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pA3_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pA3_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pA3" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pA3" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question p(B) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(B) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pB3_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pB3_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pB3" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pB3" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+  <!-- Question p(C) -->
+  <div style="display: flex; align-items: center;">
+    <span style="font-weight: bold; margin-right: 0.3rem;">p(C) =</span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="pC3_num" placeholder="?" style="width: 40px; text-align: center; margin-bottom: 0.2rem; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+      <input id="pC3_den" placeholder="?" style="width: 40px; text-align: center; padding: 0.2rem; border-radius: 6px; border: 1.5px solid #ccc;" />
+    </div>
+    <button id="valider_pC3" style="margin-left: 0.6rem; padding: 0.3rem 0.8rem; background-color: #4f46e5; color: white; border: none; border-radius: 6px; font-weight: 600;">Valider</button>
+    <span id="feedback_pC3" style="margin-left: 0.5rem; font-weight: 600;"></span>
+  </div>
+
+</div>
+
+<script>
+  function validerFraction(idNum, idDen, bonnesFractions, feedbackId) {
+    const n = parseInt(document.getElementById(idNum).value.trim(), 10);
+    const d = parseInt(document.getElementById(idDen).value.trim(), 10);
+    const feedback = document.getElementById(feedbackId);
+
+    const isCorrect = bonnesFractions.some(([bn, bd]) => n * bd === d * bn);
+
+    if (isCorrect) {
+      feedback.textContent = '✅';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌';
+      feedback.style.color = '#d90429';
+    }
+  }
+
+  document.getElementById('valider_pA3').addEventListener('click', () => {
+    validerFraction('pA3_num', 'pA3_den', [[1,4]], 'feedback_pA3');
+  });
+
+  document.getElementById('valider_pB3').addEventListener('click', () => {
+    validerFraction('pB3_num', 'pB3_den', [[3,4]], 'feedback_pB3');
+  });
+
+  document.getElementById('valider_pC3').addEventListener('click', () => {
+    validerFraction('pC3_num', 'pC3_den', [[2,4],[1,2]], 'feedback_pC3');
+  });
+</script>
 
 
 
