@@ -1,0 +1,455 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Arithmétique</title>
+<meta name="description" content="Exercices interactifs corrigés sur l'arithmétique au collège." />
+
+
+  </head>
+
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Arithmétique</h2>
+
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/crible.jpeg" alt="Crible d'Eratosthène" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Pour trouver les nombres premiers inférieurs à 100, on peut utiliser le fameux crible d'Eratosthène. (À compléter) »
+        </p>
+      </div>
+
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Nombres premiers</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/nombrepremier.jpeg" alt="Nombre premier" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <p style="font-weight: bold; margin-bottom: 0.5rem;">Liste :</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 420px;">
+    <input id="champL1" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL2" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL3" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL4" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL5" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL6" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL7" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL8" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL9" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    <input id="champL10" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+  </div>
+  <button
+    id="validerListe"
+    style="margin-top: 0.7rem; background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+  >
+    Valider
+  </button>
+  <p id="feedbackListe" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+</div>
+
+<script>
+  document.getElementById('validerListe').addEventListener('click', () => {
+    const attendu = ['2','3','5','7','11','13','17','19','23','29'];
+    const saisis = [];
+
+    for (let i = 1; i <= 10; i++) {
+      const val = document.getElementById('champL' + i).value.trim();
+      if (val !== '') saisis.push(val);
+    }
+
+    const feedback = document.getElementById('feedbackListe');
+
+    if (saisis.length !== 10) {
+      feedback.textContent = '❌ Il faut remplir les 10 champs.';
+      feedback.style.color = '#d90429';
+      return;
+    }
+
+    const reste = [...attendu];
+    let correct = true;
+    for (let val of saisis) {
+      const index = reste.indexOf(val);
+      if (index === -1) {
+        correct = false;
+        break;
+      } else {
+        reste.splice(index, 1);
+      }
+    }
+
+    if (correct && reste.length === 0) {
+      feedback.textContent = '✅ Bravo ! Tous les nombres sont corrects.';
+      feedback.style.color = '#198754';
+    } else {
+      feedback.textContent = '❌ Mauvaise réponse. Essaie encore.';
+      feedback.style.color = '#d90429';
+    }
+  });
+</script>
+
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Decomposition en produit de facteurs premiers</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/decomposition.jpeg" alt="Décomposition" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0; gap: 2rem; display: flex; flex-wrap: wrap;">
+
+  <!-- Question 1 -->
+  <div style="flex: 1 1 250px;">
+    <p style="font-weight: bold;">54 =</p>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+      <input id="q1c1" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q1c2" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q1c3" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q1c4" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerQ1"
+      style="background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackQ1" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 2 -->
+  <div style="flex: 1 1 250px;">
+    <p style="font-weight: bold;">36 =</p>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+      <input id="q2c1" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q2c2" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q2c3" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="q2c4" style="width: 40px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerQ2"
+      style="background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackQ2" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Question 3 -->
+  <div style="flex: 1 1 250px;">
+    <p style="font-weight: bold;">54 / 36 =</p>
+    <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+      <input id="q3c1" placeholder="numérateur" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <span>/</span>
+      <input id="q3c2" placeholder="dénominateur" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerQ3"
+      style="background-color: #4f46e5; color: white; border: none; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackQ3" style="margin-top: 0.5rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+</div>
+
+<script>
+  function checkFacteurs(inputs, attendu) {
+    const valeurs = inputs.map(id => document.getElementById(id).value.trim());
+    const restants = [...attendu];
+    for (const val of valeurs) {
+      const index = restants.indexOf(val);
+      if (index === -1) return false;
+      restants.splice(index, 1);
+    }
+    return restants.length === 0;
+  }
+
+  // Valider Q1
+  document.getElementById('validerQ1').addEventListener('click', () => {
+    const valide = checkFacteurs(['q1c1', 'q1c2', 'q1c3', 'q1c4'], ['2', '3', '3', '3']);
+    const fb = document.getElementById('feedbackQ1');
+    if (valide) {
+      fb.textContent = '✅ Bravo !';
+      fb.style.color = '#198754';
+    } else {
+      fb.textContent = '❌ Mauvaise réponse.';
+      fb.style.color = '#d90429';
+    }
+  });
+
+  // Valider Q2
+  document.getElementById('validerQ2').addEventListener('click', () => {
+    const valide = checkFacteurs(['q2c1', 'q2c2', 'q2c3', 'q2c4'], ['2', '2', '3', '3']);
+    const fb = document.getElementById('feedbackQ2');
+    if (valide) {
+      fb.textContent = '✅ Bravo !';
+      fb.style.color = '#198754';
+    } else {
+      fb.textContent = '❌ Mauvaise réponse.';
+      fb.style.color = '#d90429';
+    }
+  });
+
+  // Valider Q3
+  document.getElementById('validerQ3').addEventListener('click', () => {
+    const num = document.getElementById('q3c1').value.trim();
+    const den = document.getElementById('q3c2').value.trim();
+    const fb = document.getElementById('feedbackQ3');
+    if (num === '3' && den === '2') {
+      fb.textContent = '✅ Bravo !';
+      fb.style.color = '#198754';
+    } else {
+      fb.textContent = '❌ Mauvaise réponse.';
+      fb.style.color = '#d90429';
+    }
+  });
+</script>
+
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Problème de partage - PGCD</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+      
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/PGCD.jpeg" alt="PGCD" style="max-width: 100%; border-radius: 12px;" />
+        </div>  
+    
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; font-family: system-ui, sans-serif; margin: 2rem 0;">
+
+  <!-- Bloc gauche -->
+  <div style="flex: 1 1 220px; min-width: 200px;">
+    <p><strong>Nombre maximal de bouquets :</strong></p>
+    <input
+      id="bouquetsMax"
+      placeholder="?"
+      style="width: 80px; padding: 0.4rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;"
+    />
+    <button
+      id="validerBouquets"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackBouquets" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+
+  <!-- Bloc droite -->
+  <div style="flex: 1 1 300px; min-width: 200px;">
+    <p><strong>Composition :</strong></p>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <input id="rosesInput" placeholder="Roses" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="tulipesInput" placeholder="Tulipes" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <input id="pivoinesInput" placeholder="Pivoines" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button
+      id="validerComposition"
+      style="margin-top: 0.5rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+    >
+      Valider
+    </button>
+    <p id="feedbackComposition" style="margin-top: 0.3rem; font-weight: 600; min-height: 1.2em;"></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById("validerBouquets").addEventListener("click", () => {
+    const val = document.getElementById("bouquetsMax").value.trim();
+    const feedback = document.getElementById("feedbackBouquets");
+    if (val === "17") {
+      feedback.textContent = "✅ Bravo !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Mauvaise réponse.";
+      feedback.style.color = "#d90429";
+    }
+  });
+
+  document.getElementById("validerComposition").addEventListener("click", () => {
+    const val1 = document.getElementById("rosesInput").value.trim();
+    const val2 = document.getElementById("tulipesInput").value.trim();
+    const val3 = document.getElementById("pivoinesInput").value.trim();
+    const feedback = document.getElementById("feedbackComposition");
+
+    if (val1 === "15" && val2 === "22" && val3 === "4") {
+      feedback.textContent = "✅ Bonne composition !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Vérifie ta composition.";
+      feedback.style.color = "#d90429";
+    }
+  });
+</script>
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Problème d'engrenages - PPCM</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+     
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/PPCM.jpeg" alt="PPCM" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+<div style="font-family: system-ui, sans-serif; margin: 2rem 0;">
+  <p style="font-weight: bold; margin-bottom: 1rem;">La première fois dans :</p>
+  <div style="display: flex; align-items: flex-end; gap: 2rem;">
+    
+    <!-- Bloc secondes seul -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input id="inputSecs1" placeholder="Secondes" style="width: 90px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      <button
+        id="validerSecs1"
+        style="margin-top: 0.4rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+      >
+        Valider
+      </button>
+      <p id="feedbackSecs1" style="font-weight: 600; margin-top: 0.3rem; min-height: 1.2em;"></p>
+    </div>
+
+    <!-- Signe égal -->
+    <p style="font-size: 1.5rem; font-weight: bold; align-self: center; margin-bottom: 4.2rem;">=</p>
+
+
+    <!-- Bloc minutes + secondes -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="display: flex; gap: 1rem;">
+        <input id="inputMins2" placeholder="Minutes" style="width: 90px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+        <input id="inputSecs2" placeholder="Secondes" style="width: 90px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      </div>
+      <button
+        id="validerGroup2"
+        style="margin-top: 0.4rem; background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; cursor: pointer; font-weight: 600;"
+      >
+        Valider
+      </button>
+      <p id="feedbackGroup2" style="font-weight: 600; margin-top: 0.3rem; min-height: 1.2em;"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Validation du champ secondes seul
+  document.getElementById("validerSecs1").addEventListener("click", () => {
+    const sec = document.getElementById("inputSecs1").value.trim();
+    const feedback = document.getElementById("feedbackSecs1");
+    if (sec === "1683") {
+      feedback.textContent = "✅ Bravo !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Mauvaise réponse.";
+      feedback.style.color = "#d90429";
+    }
+  });
+
+  // Validation du bloc minutes + secondes
+  document.getElementById("validerGroup2").addEventListener("click", () => {
+    const min = document.getElementById("inputMins2").value.trim();
+    const sec = document.getElementById("inputSecs2").value.trim();
+    const feedback = document.getElementById("feedbackGroup2");
+    if (min === "28" && sec === "3") {
+      feedback.textContent = "✅ Bravo !";
+      feedback.style.color = "#198754";
+    } else {
+      feedback.textContent = "❌ Mauvaise réponse.";
+      feedback.style.color = "#d90429";
+    }
+  });
+</script>
+
+
+
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. Objectif Brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="QCM BILAN">
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/uSNqaOGHhyA"
+          title="QCM Arithmétique"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+        <ul class="link-buttons">
+          <li><a href="/docs/arithdnb1.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
+	<li><a href="/docs/arithdnb2.pdf" target="_blank" class="pdf-button">📘 Exercices DNB corrigés (Coopmaths)</a></li>
+        </ul>
+</section>
+</div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

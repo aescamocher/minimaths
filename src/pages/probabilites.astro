@@ -1,0 +1,171 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Probabilités</title>
+<meta name="description" content="Exercices interactifs corrigés sur les probabilités au collège." />
+
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Probabilités</h2>
+     
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/probasresume.jpeg" alt="Probabilités schéma" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Différentes façons de représenter une même fonction. »
+        </p>
+      </div>
+
+      <!-- Partie 1 -->
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">1. Vocabulaire</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé"> 
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/probas0.jpeg" alt="Probabilité vocabulaire" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+
+
+
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+
+</div>
+
+      <!-- Partie 2 -->
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">2. Expérience aléatoire à une épreuve</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé"> 
+
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/probas1.jpeg" alt="Probabilités 1 épreuve" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+
+
+
+
+
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+
+</div>
+      <!-- Partie 3 -->
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">3. Expérience aléatoire à deux épreuves</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé"> 
+
+
+         <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/probas2.jpeg" alt="Probabilités 2 épreuves" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+
+
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+
+</div>
+      <!-- Partie 4 -->
+<h3 class="section-title">
+  <span class="arrow"></span>
+  <span class="title-text">4. Objectif Brevet</span>
+  <span class="cta">Cliquez pour ouvrir ▼</span>
+</h3>
+
+<div class="collapsible-section">
+
+<section class="example-corrected" data-title="QCM BILAN">
+      <div class="video">
+        <iframe
+          width="100%"
+          height="215"
+          src="https://www.youtube.com/embed/hQpGE2kDBOo"
+          title="QCM Probabilités"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+
+</div>
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.collapsible-title');
+    titles.forEach(title => {
+      const next = title.nextElementSibling;
+      if (next && next.classList.contains('collapsible-section')) {
+        // Par défaut replié
+        next.classList.remove('open');
+
+        // Clic pour ouvrir/fermer
+        title.addEventListener('click', () => {
+          next.classList.toggle('open');
+        });
+      }
+    });
+  });
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const titles = document.querySelectorAll('.collapsible-title, .section-title');
+
+    titles.forEach(title => {
+      const next = title.nextElementSibling;
+      if (next && next.classList.contains('collapsible-section')) {
+        // Déplier/replier au clic
+        title.addEventListener('click', () => {
+          const isOpen = title.classList.toggle('open');
+          next.classList.toggle('open', isOpen);
+        });
+      }
+    });
+  });
+</script>
+
+  </body>
+</html>
