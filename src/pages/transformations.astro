@@ -1,0 +1,147 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MiniMaths – Transformations</title>
+<meta name="description" content="Exercices interactifs corrigés sur les transformations géométriques au collège." />
+
+
+  </head>
+
+  <body>
+    <Header />
+    <main class="container">
+      <h2>Transformations</h2>
+
+      <!-- Image + légende -->
+      <div style="margin-bottom: 2rem;">
+        <img src="/images/transfo.jpeg" alt="Transformations géométriques" style="width: 100%; border-radius: 12px;" />
+        <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">
+          « Les transformations géométriques au programme du collège. »
+        </p>
+      </div>
+
+      <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">1. Symétries</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/symetries.jpeg" alt="Symétries" style="max-width: 100%; border-radius: 12px;" />
+        </div>
+
+
+
+
+</section>
+
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">2. Translations</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="Exemple corrigé">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/translations.jpeg" alt="Translations" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">3. Rotations</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+      
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/rotations.jpeg" alt="Rotations" style="max-width: 100%; border-radius: 12px;" />
+        </div>  
+    
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">4. Homothéties</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+     
+<section class="example-corrected" data-title="Exemple corrigé">
+       <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="/images/homotheties.jpeg" alt="Homothéties" style="max-width: 100%; border-radius: 12px;" />
+        </div>   
+
+
+
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+            <h3 class="section-title">
+        <span class="arrow"></span>
+        <span class="title-text">5. Objectif Brevet</span>
+        <span class="cta">Cliquez pour ouvrir ▼</span>
+      </h3>
+      <div class="collapsible-section">
+
+<section class="example-corrected" data-title="QCM BILAN">
+      <div class="video">
+        <iframe width="100%" height="215"
+          src="https://www.youtube.com/embed/oiTmvvQ2IA4"
+          title="QCM Transformations"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+</section>
+<section class="training-links" data-title="Pour s’entraîner">
+
+</section>
+</div>
+
+      <a href="/" class="btn">🏠 Retour à l’accueil</a>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const titles = document.querySelectorAll('.collapsible-title, .section-title');
+        titles.forEach(title => {
+          const next = title.nextElementSibling;
+          if (next && next.classList.contains('collapsible-section')) {
+            title.addEventListener('click', () => {
+              const isOpen = title.classList.toggle('open');
+              next.classList.toggle('open', isOpen);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
