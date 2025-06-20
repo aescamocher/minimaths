@@ -108,9 +108,12 @@ import '../styles/global.css';
 
 <script>
   function genererEquationSimple() {
-    const a = Math.floor(Math.random() * 41) - 20 || 1; // entre -20 et 20, exclut 0
-    const x = Math.floor(Math.random() * 21) - 10; // entre -10 et 10
-    const b = a * x;
+    let a, x, b;
+    do {
+      a = Math.floor(Math.random() * 41) - 20;
+      x = Math.floor(Math.random() * 21) - 10;
+      b = a * x;
+    } while (a === 0 || b === 0); // exclut a = 0 et b = 0
     return { a, b, x };
   }
 
@@ -133,28 +136,39 @@ import '../styles/global.css';
     `;
 
     document.getElementById(`validerSimple${index}`).addEventListener("click", () => {
-      const num = parseInt(document.getElementById(`numSimple${index}`).value.trim());
-      const den = parseInt(document.getElementById(`denSimple${index}`).value.trim());
+      const numStr = document.getElementById(`numSimple${index}`).value.trim();
+      const denStr = document.getElementById(`denSimple${index}`).value.trim();
       const feedback = document.getElementById(`feedbackSimple${index}`);
-      let correct = false;
 
-      if (!isNaN(num) && !isNaN(den) && den !== 0) {
-        const result = num / den;
-        if (Math.abs(result - eq.x) < 0.0001) {
-          feedback.textContent = "✅ Bravo, bonne réponse !";
-          feedback.style.color = "#198754";
-          correct = true;
-        } else {
-          feedback.textContent = "❌ Mauvaise réponse.";
-          feedback.style.color = "#d90429";
-        }
-      } else {
-        feedback.textContent = "⚠️ Fraction invalide.";
+      const validInt = /^-?\d+$/;
+      if (!validInt.test(numStr) || !validInt.test(denStr)) {
+        feedback.textContent = "⚠️ Entrez uniquement des nombres entiers.";
         feedback.style.color = "#f59e0b";
         return;
       }
 
-      setTimeout(() => poserQuestionSimple(index + 1, correct ? score + 1 : score), 1000);
+      const num = parseInt(numStr);
+      const den = parseInt(denStr);
+
+      if (den === 0) {
+        feedback.textContent = "⚠️ Le dénominateur ne peut pas être zéro.";
+        feedback.style.color = "#f59e0b";
+        return;
+      }
+
+      const userValue = num / den;
+      const correctValue = eq.x;
+      const isCorrect = Math.abs(userValue - correctValue) < 0.0001;
+
+      if (isCorrect) {
+        feedback.textContent = "✅ Bonne réponse.";
+        feedback.style.color = "#198754";
+        setTimeout(() => poserQuestionSimple(index + 1, score + 1), 1000);
+      } else {
+        feedback.textContent = `❌ Mauvaise réponse. La bonne réponse était x = ${eq.b} / ${eq.a}`;
+        feedback.style.color = "#d90429";
+        setTimeout(() => poserQuestionSimple(index + 1, score), 2500);
+      }
     });
   }
 
@@ -162,17 +176,20 @@ import '../styles/global.css';
     if (index >= 5) {
       const final = document.getElementById("scoreFinalSimple");
       let message = "", color = "";
-      if (score <= 2) {
-        message = "😓 À revoir !";
-        color = "#dc2626";
-      } else if (score <= 4) {
-        message = "🙂 Bien joué, encore un effort !";
-        color = "#f59e0b";
-      } else {
-        message = "🏆 Félicitations !";
+      if (score === 5) {
+        message = "🏆 Parfait ! Score : 5/5";
         color = "#16a34a";
+      } else if (score === 4) {
+        message = "🟡 4/5 — Correct, mais tu peux mieux faire.";
+        color = "#facc15";
+      } else if (score === 3) {
+        message = "🟠 3/5 — Niveau moyen, tu as besoin de révisions.";
+        color = "#f97316";
+      } else {
+        message = `🔴 ${score}/5 — Résultat insuffisant, revois la méthode.`;
+        color = "#dc2626";
       }
-      final.innerHTML = `<span style="color:${color};">${message} Score : ${score}/5</span>`;
+      final.innerHTML = `<span style="color:${color};">${message}</span>`;
       return;
     }
 
@@ -185,6 +202,8 @@ import '../styles/global.css';
     poserQuestionSimple(0, 0);
   });
 </script>
+
+
 
 
 
@@ -281,70 +300,88 @@ import '../styles/global.css';
   let indexAdd = 0;
 
   function genererEquationAdd() {
-    const x = Math.floor(Math.random() * 41) - 20;
-    const a = Math.floor(Math.random() * 41) - 20;
-    const b = a + x;
+    let x, a, b;
+    do {
+      x = Math.floor(Math.random() * 41) - 20;
+    } while (x === 0);
+    do {
+      a = Math.floor(Math.random() * 41) - 20;
+    } while (a === 0);
+    b = a + x;
     const ordre = Math.random() < 0.5; // true: a + x = b ; false: x + a = b
     return { a, b, x, ordre };
   }
 
-function afficherQuestionAdd(index, eq) {
-  const eqTexte = eq.ordre ? `${eq.a} + x = ${eq.b}` : `x + ${eq.a} = ${eq.b}`;
-  eqAddContainer.innerHTML = `
-    <p><strong>Équation ${index + 1} :</strong> ${eqTexte}</p>
-    <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-      <label for="repAdd" style="font-weight: 600;">x =</label>
-      <input id="repAdd" type="text" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" placeholder="?" />
-      <button id="validerAddBtn" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; font-weight: 600; cursor: pointer;">Valider</button>
-    </div>
-    <p id="feedbackAdd" style="margin-top: 0.5rem; font-weight: 600;"></p>
-  `;
+  function afficherQuestionAdd(index, eq) {
+    const eqTexte = eq.ordre ? `${eq.a} + x = ${eq.b}` : `x + ${eq.a} = ${eq.b}`;
+    eqAddContainer.innerHTML = `
+      <p><strong>Équation ${index + 1} :</strong> ${eqTexte}</p>
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+        <label for="repAdd" style="font-weight: 600;">x =</label>
+        <input id="repAdd" type="text" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" placeholder="?" />
+        <button id="validerAddBtn" style="background-color: #4f46e5; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 6px; font-weight: 600; cursor: pointer;">Valider</button>
+      </div>
+      <p id="feedbackAdd" style="margin-top: 0.5rem; font-weight: 600;"></p>
+    `;
 
-  document.getElementById("validerAddBtn").addEventListener("click", verifierAdd);
-}
-
+    document.getElementById("validerAddBtn").addEventListener("click", verifierAdd);
+  }
 
   function verifierAdd() {
     const input = document.getElementById("repAdd").value.trim();
     const feedback = document.getElementById("feedbackAdd");
-    const attendu = questionsAdd[indexAdd].x.toString();
+    const attendu = questionsAdd[indexAdd].x;
 
-    if (input === attendu) {
-      feedback.textContent = "✅ Bonne réponse !";
-      feedback.style.color = "#198754";
-      scoreAdd++;
-    } else {
-      feedback.textContent = `❌ Mauvaise réponse (rép attendue : ${attendu})`;
-      feedback.style.color = "#dc2626";
+    // Refuser tout sauf entiers valides
+    const validInt = /^-?\d+$/;
+    if (!validInt.test(input)) {
+      feedback.textContent = "⚠️ Réponse invalide. N'entre que des nombres entiers.";
+      feedback.style.color = "#f59e0b";
+      return;
     }
 
+    const reponse = parseInt(input, 10);
+
+    if (reponse === attendu) {
+      feedback.textContent = "✅ Bonne réponse.";
+      feedback.style.color = "#198754";
+      scoreAdd++;
+      setTimeout(() => passerSuivante(), 1000);
+    } else {
+      feedback.textContent = `❌ Mauvaise réponse. La bonne réponse était x = ${attendu}`;
+      feedback.style.color = "#dc2626";
+      setTimeout(() => passerSuivante(), 2500);
+    }
+  }
+
+  function passerSuivante() {
     indexAdd++;
-    setTimeout(() => {
-      if (indexAdd < questionsAdd.length) {
-        afficherQuestionAdd(indexAdd, questionsAdd[indexAdd]);
-      } else {
-        afficherScoreFinalAdd();
-      }
-    }, 1000);
+    if (indexAdd < questionsAdd.length) {
+      afficherQuestionAdd(indexAdd, questionsAdd[indexAdd]);
+    } else {
+      afficherScoreFinalAdd();
+    }
   }
 
   function afficherScoreFinalAdd() {
     eqAddContainer.innerHTML = "";
-    let message = "";
-    let color = "";
+    let message = "", color = "";
 
-    if (scoreAdd <= 2) {
-      message = "😕 À revoir, tu peux y arriver !";
-      color = "#ef4444";
-    } else if (scoreAdd <= 4) {
-      message = "🙂 Bien joué, encore un effort !";
-      color = "#f59e0b";
+    if (scoreAdd === 5) {
+      message = "🏆 Parfait ! Score : 5/5";
+      color = "#16a34a";
+    } else if (scoreAdd === 4) {
+      message = "🟡 4/5 — Correct, mais tu peux mieux faire.";
+      color = "#facc15";
+    } else if (scoreAdd === 3) {
+      message = "🟠 3/5 — Niveau moyen, tu as besoin de révisions.";
+      color = "#f97316";
     } else {
-      message = "🏆 Félicitations !";
-      color = "#10b981";
+      message = `🔴 ${score}/5 — Résultat insuffisant, revois la méthode.`;
+      color = "#dc2626";
     }
 
-    scoreFinalAdd.innerHTML = `Score : ${scoreAdd}/5 <br><span style="color:${color}">${message}</span>`;
+    scoreFinalAdd.innerHTML = `<span style="color:${color};">${message}</span>`;
   }
 
   document.getElementById("lancerEquationsAdd").addEventListener("click", () => {
@@ -355,6 +392,7 @@ function afficherQuestionAdd(index, eq) {
     afficherQuestionAdd(indexAdd, questionsAdd[indexAdd]);
   });
 </script>
+
 
 
 </section>
