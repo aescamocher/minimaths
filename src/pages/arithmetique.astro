@@ -104,6 +104,130 @@ import '../styles/global.css';
 
 <section class="training-links" data-title="Pour s’entraîner">
 
+<div id="primeQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem 0; text-align: center;">
+  <button id="startPrimeQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère ta série de nombres et trouve ceux qui sont premiers !
+  </button>
+
+  <div id="primeQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="primeQuestion" style="font-size: 1.5rem; font-weight: bold;"></p>
+    <div style="margin-top: 1.5rem;">
+      <button id="btnPremier" style="font-size: 1.1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; cursor: pointer; margin-right: 1.2rem;">✅ Premier</button>
+      <button id="btnPasPremier" style="font-size: 1.1rem; background-color: #ef4444; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; cursor: pointer;">❌ Pas premier</button>
+    </div>
+    <p id="primeFeedback" style="margin-top: 1.2rem; font-weight: 600; font-size: 1.2rem; min-height: 1.8em;"></p>
+    <p id="primeScoreFinal" style="font-size: 1.4rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayPrimeQuiz" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const diviseurs = {};
+    const isPrime = (n) => {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+          if (!diviseurs[n]) diviseurs[n] = [i, n / i];
+          return false;
+        }
+      }
+      return true;
+    };
+
+    const generateNumbers = () => {
+      const list = [];
+      while (list.length < 5) {
+        const n = Math.floor(Math.random() * 100) + 1;
+        if (!list.includes(n)) {
+          isPrime(n); // cache les diviseurs
+          list.push(n);
+        }
+      }
+      return list;
+    };
+
+    const state = {
+      current: 0,
+      score: 0,
+      values: []
+    };
+
+    const q = document.getElementById("primeQuestion");
+    const feedback = document.getElementById("primeFeedback");
+    const scoreFinal = document.getElementById("primeScoreFinal");
+    const replayBtn = document.getElementById("replayPrimeQuiz");
+    const btnYes = document.getElementById("btnPremier");
+    const btnNo = document.getElementById("btnPasPremier");
+    const container = document.getElementById("primeQuizContainer");
+    const startBtn = document.getElementById("startPrimeQuiz");
+
+    const loadQuestion = () => {
+      feedback.textContent = "";
+      q.textContent = `Nombre ${state.current + 1}/5 : ${state.values[state.current]}`;
+    };
+
+    const showScore = () => {
+      q.textContent = "";
+      feedback.textContent = "";
+      let mention = "";
+      const s = state.score;
+      if (s <= 3) mention = "❌ À revoir !";
+      else if (s <= 4) mention = "⚠️ Presque !";
+      else mention = "🎉 Bravo !";
+
+      scoreFinal.textContent = `Score : ${s}/5 – ${mention}`;
+      replayBtn.style.display = "inline-block";
+    };
+
+    const handleAnswer = (userSaysPrime) => {
+      const val = state.values[state.current];
+      const prime = isPrime(val);
+
+      if (prime === userSaysPrime) {
+        feedback.textContent = "✅ Bonne réponse !";
+        feedback.style.color = "#198754";
+        state.score++;
+      } else {
+        feedback.textContent = "❌ Mauvaise réponse.";
+        feedback.style.color = "#d90429";
+        if (!prime && diviseurs[val]) {
+          const [a, b] = diviseurs[val];
+          feedback.textContent += ` ${val} = ${a} × ${b}`;
+        }
+      }
+
+      setTimeout(() => {
+        state.current++;
+        if (state.current < 5) {
+          loadQuestion();
+        } else {
+          showScore();
+        }
+      }, 1000);
+    };
+
+    const startQuiz = () => {
+      state.values = generateNumbers();
+      state.current = 0;
+      state.score = 0;
+      scoreFinal.textContent = "";
+      replayBtn.style.display = "none";
+      container.style.display = "block";
+      loadQuestion();
+    };
+
+    btnYes.addEventListener("click", () => handleAnswer(true));
+    btnNo.addEventListener("click", () => handleAnswer(false));
+    replayBtn.addEventListener("click", startQuiz);
+    startBtn.addEventListener("click", startQuiz);
+  })();
+</script>
+
+
+
 </section>
 </div>
 
