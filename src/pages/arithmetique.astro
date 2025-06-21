@@ -106,7 +106,7 @@ import '../styles/global.css';
 
 <div id="primeQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem 0; text-align: center;">
   <button id="startPrimeQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
-    🎲 Génère ta série de nombres et trouve ceux qui sont premiers !
+    🎲 Génère tes 5 nombres, trouve ceux qui sont premiers !
   </button>
 
   <div id="primeQuizContainer" style="margin-top: 2rem; display: none;">
@@ -358,6 +358,126 @@ import '../styles/global.css';
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
 
+<div id="fractionQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 500px; text-align: center;">
+  <button id="startFracQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 fractions à simplifier !
+  </button>
+
+  <div id="fractionQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="fractionQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+      <label style="font-weight: 600;">=</label>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <input id="frac_num" type="text" placeholder="num" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+        <hr style="width: 80%; margin: 2px 0;" />
+        <input id="frac_den" type="text" placeholder="den" style="width: 60px; text-align: center; padding: 0.3rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+      </div>
+    </div>
+    <button id="validerFrac" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="fractionFeedback" style="margin-top: 1.2rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="fractionScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayFracQuiz" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  // PGCD pour simplifier
+  function pgcd(a, b) {
+    return b === 0 ? a : pgcd(b, a % b);
+  }
+
+  // Génère une fraction réductible >20, pas premiers
+  function genererFraction() {
+    const nonPrimes = [];
+    for (let n = 21; n <= 100; n++) {
+      let prime = true;
+      for (let i = 2; i <= Math.sqrt(n); i++){
+        if(n % i === 0){prime = false; break;}
+      }
+      if (!prime) nonPrimes.push(n);
+    }
+    const den = nonPrimes[Math.floor(Math.random() * nonPrimes.length)];
+    const num = nonPrimes[Math.floor(Math.random() * nonPrimes.length)];
+    const factor = pgcd(num, den);
+    if (factor === 1) return genererFraction(); // on évite déjà irréductibles
+    return { num, den, simpNum: num / factor, simpDen: den / factor };
+  }
+
+  let fractions = [], idx = 0, score = 0;
+  const btnStart = document.getElementById("startFracQuiz");
+  const container = document.getElementById("fractionQuizContainer");
+  const txtQuestion = document.getElementById("fractionQuestion");
+  const btnValider = document.getElementById("validerFrac");
+  const txtFeedback = document.getElementById("fractionFeedback");
+  const txtScore = document.getElementById("fractionScoreFinal");
+  const btnReplay = document.getElementById("replayFracQuiz");
+
+  function afficherFraction() {
+    const f = fractions[idx];
+    txtQuestion.textContent = `Fraction à simplifier (${idx+1}/5) : ${f.num}/${f.den}`;
+    txtFeedback.textContent = "";
+    document.getElementById("frac_num").value = "";
+    document.getElementById("frac_den").value = "";
+  }
+
+  btnValider.addEventListener("click", () => {
+    const f = fractions[idx];
+    const n = parseInt(document.getElementById("frac_num").value.trim());
+    const d = parseInt(document.getElementById("frac_den").value.trim());
+    if (isNaN(n) || isNaN(d) || d === 0) {
+      txtFeedback.textContent = "⚠️ Merci d’entrer une fraction correcte (numérateur et dénominateur entiers).";
+      txtFeedback.style.color = "#d97706";
+      return;
+    }
+    if (n === f.simpNum && d === f.simpDen) {
+      txtFeedback.textContent = "✅ Correct !";
+      txtFeedback.style.color = "#198754";
+      score++;
+    } else {
+      txtFeedback.textContent = `❌ Non : la forme irréductible est ${f.simpNum}/${f.simpDen}`;
+      txtFeedback.style.color = "#dc2626";
+    }
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        afficherFraction();
+      } else {
+        let mention = score === 5 ? "🎉 Parfait !" :
+                      score >= 4 ? "⚠️ Presque !" :
+                      "❌ À revoir !";
+        txtScore.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 800);
+  });
+
+  btnReplay.addEventListener("click", () => {
+    commencerQuiz();
+  });
+
+  btnStart.addEventListener("click", () => {
+    commencerQuiz();
+    container.style.display = "block";
+  });
+
+  function commencerQuiz() {
+    fractions = [];
+    idx = 0;
+    score = 0;
+    txtScore.textContent = "";
+    btnReplay.style.display = "none";
+    for (let i = 0; i < 5; i++) fractions.push(genererFraction());
+    afficherFraction();
+  }
+})();
+</script>
+
+
 </section>
 </div>
 
@@ -442,6 +562,125 @@ import '../styles/global.css';
 
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="gcdBouquetsWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startGcdBouquets" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 problèmes de bouquets !
+  </button>
+
+  <div id="gcdBouquetsContainer" style="margin-top: 2rem; display: none;">
+    <p id="gcdBouquetsEnonce" style="font-size: 1.3rem; font-weight: bold; line-height: 1.4em;"></p>
+
+    <div style="margin: 1rem 0; display: flex; gap: 1rem; justify-content: center; align-items: center;">
+      <div>
+        <label style="font-weight: 600;">Nombre de bouquets :</label><br>
+        <input id="gcdNb" type="text" style="width: 60px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+      </div>
+      <div>
+        <label style="font-weight: 600;">Composition (t,r,p) :</label><br>
+        <div style="display: flex; gap: 0.3rem;">
+          <input id="gcdNt" placeholder="t" style="width: 50px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+          <input id="gcdNr" placeholder="r" style="width: 50px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+          <input id="gcdNp" placeholder="p" style="width: 50px; padding: 0.3rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+        </div>
+      </div>
+    </div>
+
+    <button id="validerGcdBouquets" style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+
+    <p id="gcdBouquetsFeedback" style="margin-top: 1.2rem; font-size: 1.1rem; font-weight: 600; min-height: 2em;"></p>
+    <p id="gcdBouquetsScore" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+
+    <button id="replayGcdBouquets" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  function pgcd(a, b) {
+    return b === 0 ? a : pgcd(b, a % b);
+  }
+
+  function genTriple() {
+    let t, r, p, g;
+    do {
+      t = Math.floor(Math.random() * 481) + 20;
+      r = Math.floor(Math.random() * 481) + 20;
+      p = Math.floor(Math.random() * 481) + 20;
+      g = pgcd(pgcd(t, r), p);
+    } while (g < 2);
+    return { t, r, p, g };
+  }
+
+  let list = [], idx = 0, score = 0;
+  const start = document.getElementById("startGcdBouquets");
+  const container = document.getElementById("gcdBouquetsContainer");
+  const enonce = document.getElementById("gcdBouquetsEnonce");
+  const inpNb = document.getElementById("gcdNb");
+  const inpT = document.getElementById("gcdNt");
+  const inpR = document.getElementById("gcdNr");
+  const inpP = document.getElementById("gcdNp");
+  const btnVal = document.getElementById("validerGcdBouquets");
+  const fb = document.getElementById("gcdBouquetsFeedback");
+  const scoreEl = document.getElementById("gcdBouquetsScore");
+  const replay = document.getElementById("replayGcdBouquets");
+
+  function showItem() {
+    const q = list[idx];
+    enonce.textContent = `On dispose de ${q.t} tulipes, ${q.r} roses et ${q.p} pivoines. On veut réaliser le plus de bouquets identiques en utilisant toutes les fleurs.`;
+    inpNb.value = ""; inpT.value = ""; inpR.value = ""; inpP.value = "";
+    fb.textContent = "";
+  }
+
+  start.addEventListener("click", () => {
+    list = Array.from({length:5}, genTriple);
+    idx = 0; score = 0;
+    scoreEl.textContent = "";
+    replay.style.display = "none";
+    container.style.display = "block";
+    showItem();
+  });
+
+  btnVal.addEventListener("click", () => {
+    const q = list[idx];
+    const nb = parseInt(inpNb.value);
+    const nt = parseInt(inpT.value);
+    const nr = parseInt(inpR.value);
+    const np = parseInt(inpP.value);
+    let ok = true;
+    if (isNaN(nb) || isNaN(nt) || isNaN(nr) || isNaN(np)) ok = false;
+    if (nb !== q.g || nt !== q.t / q.g || nr !== q.r / q.g || np !== q.p / q.g) ok = false;
+
+    if (ok) {
+      fb.textContent = "✅ Correct !";
+      fb.style.color = "#198754";
+      score++;
+    } else {
+      fb.textContent = `❌ Non : il faut ${q.g} bouquets, composition = (${q.t/q.g}, ${q.r/q.g}, ${q.p/q.g})`;
+      fb.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) showItem();
+      else {
+        const m = score === 5 ? "🎉 Parfait !" :
+                  score >= 4 ? "⚠️ Presque !" :
+                  "❌ À revoir !";
+        scoreEl.textContent = `Score : ${score}/5 – ${m}`;
+        replay.style.display = "inline-block";
+      }
+    }, 800);
+  });
+
+  replay.addEventListener("click", () => start.click());
+})();
+</script>
+
 
 </section>
 </div>
@@ -530,6 +769,113 @@ import '../styles/global.css';
 
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="ppcmAmpoulesWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startPpcmQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 problèmes d'ampoules !
+  </button>
+
+  <div id="ppcmAmpoulesContainer" style="margin-top: 2rem; display: none;">
+    <p id="ppcmQuestion" style="font-size: 1.3rem; font-weight: bold; line-height: 1.4em;"></p>
+
+    <input id="ppcmInput" type="text" placeholder="temps (s)" style="margin: 1rem auto; width: 100px; padding: 0.4rem; font-size: 1.1rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+
+    <button id="validerPpcm" style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+
+    <p id="ppcmFeedback" style="margin-top: 1.2rem; font-size: 1.1rem; font-weight: 600; min-height: 2em;"></p>
+    <p id="ppcmScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+
+    <button id="replayPpcm" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  function pgcd(a, b) {
+    return b === 0 ? a : pgcd(b, a % b);
+  }
+  function ppcm(a, b) {
+    return (a * b) / pgcd(a, b);
+  }
+
+  function genPair() {
+    let x, y, p;
+    do {
+      x = Math.floor(Math.random() * 51) + 10; // 10 à 60
+      y = Math.floor(Math.random() * 51) + 10;
+      p = ppcm(x, y);
+    } while (p > 300 || x === y);
+    return { x, y, ppcm: p };
+  }
+
+  let questions = [], idx = 0, score = 0;
+  const btnStart = document.getElementById("startPpcmQuiz");
+  const container = document.getElementById("ppcmAmpoulesContainer");
+  const enonce = document.getElementById("ppcmQuestion");
+  const input = document.getElementById("ppcmInput");
+  const btnValider = document.getElementById("validerPpcm");
+  const feedback = document.getElementById("ppcmFeedback");
+  const scoreFinal = document.getElementById("ppcmScoreFinal");
+  const replayBtn = document.getElementById("replayPpcm");
+
+  function showQuestion() {
+    const q = questions[idx];
+    enonce.textContent = `Deux ampoules clignotent, l’une toutes les ${q.x} s et l’autre toutes les ${q.y} s. Elles s’allument ensemble. Dans combien de temps s’allumeront-elles de nouveau ensemble ?`;
+    input.value = "";
+    feedback.textContent = "";
+  }
+
+  btnStart.addEventListener("click", () => {
+    questions = Array.from({ length: 5 }, genPair);
+    idx = 0; score = 0;
+    container.style.display = "block";
+    scoreFinal.textContent = "";
+    replayBtn.style.display = "none";
+    showQuestion();
+  });
+
+  btnValider.addEventListener("click", () => {
+    const q = questions[idx];
+    const val = parseInt(input.value.trim());
+    if (isNaN(val)) {
+      feedback.textContent = "⚠️ Merci d’entrer un nombre entier en secondes.";
+      feedback.style.color = "#d97706";
+      return;
+    }
+
+    if (val === q.ppcm) {
+      feedback.textContent = "✅ Correct !";
+      feedback.style.color = "#198754";
+      score++;
+    } else {
+      feedback.textContent = `❌ Non : elles se rallumeront ensemble dans ${q.ppcm} secondes.`;
+      feedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        showQuestion();
+      } else {
+        let mention = score === 5 ? "🎉 Parfait !" :
+                      score >= 4 ? "⚠️ Presque !" :
+                      "❌ À revoir !";
+        scoreFinal.textContent = `Score : ${score}/5 – ${mention}`;
+        replayBtn.style.display = "inline-block";
+      }
+    }, 900);
+  });
+
+  replayBtn.addEventListener("click", () => {
+    btnStart.click();
+  });
+})();
+</script>
+
 
 </section>
 </div>
