@@ -533,18 +533,31 @@ function afficherEquationEtChamp(eq, index) {
   `;
 
   document.getElementById("validerStep").addEventListener("click", () => {
-    const n = parseInt(document.getElementById("numStep").value.trim());
-    const d = parseInt(document.getElementById("denStep").value.trim());
-    const feedback = document.getElementById("feedbackStep");
+const numStr = document.getElementById("numStep").value.trim();
+const denStr = document.getElementById("denStep").value.trim();
+const feedback = document.getElementById("feedbackStep");
 
-    if (n * eq.den === d * eq.num) {
-      feedback.textContent = "✅ Bonne réponse !";
-      feedback.style.color = "#198754";
-      eqScore++;
-    } else {
-      feedback.textContent = "❌ Mauvaise réponse.";
-      feedback.style.color = "#dc2626";
-    }
+// Vérifie que les deux champs sont des entiers (négatifs ou positifs)
+const intRegex = /^-?\d+$/;
+if (!intRegex.test(numStr) || !intRegex.test(denStr)) {
+  feedback.textContent = "❌ Entrée invalide. Utilise uniquement des nombres entiers.";
+  feedback.style.color = "#dc2626";
+  return;
+}
+
+const n = parseInt(numStr);
+const d = parseInt(denStr);
+
+// Vérifie si la réponse est correcte
+if (n * eq.den === d * eq.num) {
+  feedback.textContent = "✅ Bonne réponse !";
+  feedback.style.color = "#198754";
+  eqScore++;
+} else {
+  feedback.textContent = `❌ Mauvaise réponse. La bonne réponse est x = ${eq.num}/${eq.den}`;
+  feedback.style.color = "#dc2626";
+}
+
 
     setTimeout(() => {
       eqIndex++;
@@ -719,22 +732,33 @@ function afficherEquationCarree(eq, index) {
   `;
 
   document.getElementById("validerCarre").addEventListener("click", () => {
-    const r1 = parseInt(document.getElementById("rep1Carre").value.trim());
-    const r2 = parseInt(document.getElementById("rep2Carre").value.trim());
-    const feedback = document.getElementById("feedbackCarre");
+const val1 = document.getElementById("rep1Carre").value.trim();
+const val2 = document.getElementById("rep2Carre").value.trim();
+const feedback = document.getElementById("feedbackCarre");
 
-    const sol = eq.solution;
-    const correct =
-      (r1 === sol[0] && r2 === sol[1]) || (r1 === sol[1] && r2 === sol[0]);
+// Vérifie que les deux entrées sont des entiers valides
+const intRegex = /^-?\d+$/;
+if (!intRegex.test(val1) || !intRegex.test(val2)) {
+  feedback.textContent = "❌ Entrée invalide. Utilise uniquement des entiers.";
+  feedback.style.color = "#dc2626";
+  return;
+}
 
-    if (correct) {
-      feedback.textContent = "✅ Bonne réponse !";
-      feedback.style.color = "#198754";
-      scoreCarre++;
-    } else {
-      feedback.textContent = `❌ Mauvaise réponse.`;
-      feedback.style.color = "#dc2626";
-    }
+const r1 = parseInt(val1);
+const r2 = parseInt(val2);
+const sol = eq.solution;
+const correct =
+  (r1 === sol[0] && r2 === sol[1]) || (r1 === sol[1] && r2 === sol[0]);
+
+if (correct) {
+  feedback.textContent = "✅ Bonne réponse !";
+  feedback.style.color = "#198754";
+  scoreCarre++;
+} else {
+  feedback.textContent = `❌ Mauvaise réponse. Les bonnes réponses étaient x = ${sol[0]} et x = ${sol[1]}`;
+  feedback.style.color = "#dc2626";
+}
+
 
     setTimeout(() => {
       indexCarre++;
@@ -879,8 +903,9 @@ document.getElementById("btnCarres").addEventListener("click", () => {
     const a = Math.floor(Math.random() * 11) - 5; // [-5,5]
     const b = Math.floor(Math.random() * 11) - 5;
     if (a === b) return genererProduitNul(); // éviter racines identiques
-    const affA = a < 0 ? `x + ${-a}` : `x - ${a}`;
-    const affB = b < 0 ? `x + ${-b}` : `x - ${b}`;
+const affA = a === 0 ? "x" : (a < 0 ? `x + ${-a}` : `x - ${a}`);
+const affB = b === 0 ? "x" : (b < 0 ? `x + ${-b}` : `x - ${b}`);
+
     const texte = `(${affA})(${affB}) = 0`;
     return {
       texte,
@@ -908,22 +933,32 @@ document.getElementById("btnCarres").addEventListener("click", () => {
     `;
 
     document.getElementById("validerProduit").addEventListener("click", () => {
-      const r1 = parseInt(document.getElementById("rep1Produit").value.trim());
-      const r2 = parseInt(document.getElementById("rep2Produit").value.trim());
-      const fb = document.getElementById("feedbackProduit");
+     const val1 = document.getElementById("rep1Produit").value.trim();
+const val2 = document.getElementById("rep2Produit").value.trim();
+const fb = document.getElementById("feedbackProduit");
 
-      const correct =
-        (r1 === eq.racines[0] && r2 === eq.racines[1]) ||
-        (r1 === eq.racines[1] && r2 === eq.racines[0]);
+// Vérifie que les deux entrées sont bien des entiers
+const intRegex = /^-?\d+$/;
+if (!intRegex.test(val1) || !intRegex.test(val2)) {
+  fb.textContent = "❌ Entrée invalide. Utilise uniquement des entiers.";
+  fb.style.color = "#dc2626";
+  return;
+}
 
-      if (correct) {
-        fb.textContent = "✅ Bien joué !";
-        fb.style.color = "#198754";
-        scoreProduit++;
-      } else {
-        fb.textContent = "❌ Mauvaise réponse.";
-        fb.style.color = "#dc2626";
-      }
+const r1 = parseInt(val1);
+const r2 = parseInt(val2);
+const racines = eq.racines;
+const correct = (r1 === racines[0] && r2 === racines[1]) || (r1 === racines[1] && r2 === racines[0]);
+
+if (correct) {
+  fb.textContent = "✅ Bien joué !";
+  fb.style.color = "#198754";
+  scoreProduit++;
+} else {
+  fb.textContent = `❌ Mauvaise réponse. Les bonnes réponses sont x = ${racines[0]} et x = ${racines[1]}`;
+  fb.style.color = "#dc2626";
+}
+
 
       setTimeout(() => {
         indexProduit++;
