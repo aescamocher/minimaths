@@ -139,7 +139,7 @@ import '../styles/global.css';
 
   function showQuestion() {
     const [a,b,c] = list[idx];
-    enonce.textContent = `Le triangle ABC est rectangle en A, AB = ${a} et AC = ${b}. Quelle est la longueur de BC ?`;
+    enonce.textContent = `Le triangle ABC est rectangle en A tel que AB = ${a} et AC = ${b}. Quelle est la longueur de BC ?`;
     input.value = "";
     feedback.textContent = "";
   }
@@ -314,7 +314,7 @@ import '../styles/global.css';
 
   function showQuestion() {
     const q = questions[current];
-    txtQuestion.textContent = `Le triangle ABC est rectangle en A, AB = ${q.AB} et BC = ${q.BC}. Quelle est la longueur de AC ?`;
+    txtQuestion.textContent = `Le triangle ABC est rectangle en A tel que : AB = ${q.AB} et BC = ${q.BC}. Quelle est la longueur de AC ?`;
     feedback.textContent = "";
     inputAnswer.value = "";
   }
@@ -545,9 +545,14 @@ import '../styles/global.css';
 
 <script>
 (() => {
-  const triplets = [
-    [13, 14, 15], [17, 15, 8], [9, 40, 41], [28, 45, 53], [20, 21, 29], [11, 60, 61],
-    [33, 56, 65], [16, 63, 65], [36, 77, 85], [39, 80, 89], [65, 72, 97]
+  const tripletsRectangles = [
+    [9, 40, 41], [28, 45, 53], [11, 60, 61], [33, 56, 65], [16, 63, 65],
+    [36, 77, 85], [39, 80, 89], [65, 72, 97]
+  ];
+
+  const tripletsNonRectangles = [
+    [13, 14, 15], [17, 15, 8], [20, 21, 29], [10, 11, 12],
+    [7, 10, 12], [22, 23, 24], [6, 7, 10]
   ];
 
   function melange(liste) {
@@ -579,20 +584,25 @@ import '../styles/global.css';
     finalScore.textContent = "";
     replayBtn.style.display = "none";
 
-    const copies = [...triplets];
-    melange(copies);
-    for (let i = 0; i < 5; i++) {
-      const t = [...copies[i]];
+    const rect = melange([...tripletsRectangles]);
+    const nonRect = melange([...tripletsNonRectangles]);
+
+    const selection = [...rect.slice(0, 3), ...nonRect.slice(0, 2)];
+    melange(selection);
+
+    for (let i = 0; i < selection.length; i++) {
+      const t = [...selection[i]];
       melange(t);
       const rectangle = isRectangle(...t);
       triangles.push({ côtés: t, rectangle });
     }
+
     afficherQuestion();
   }
 
   function afficherQuestion() {
     const t = triangles[idx];
-    question.textContent = `Triangle avec côtés AB = ${t.côtés[0]} ; AC = ${t.côtés[1]} ; BC = ${t.côtés[2]} – Est-il rectangle ?`;
+    question.textContent = `Le triangle ABC tel que : AB = ${t.côtés[0]} ; AC = ${t.côtés[1]} ; BC = ${t.côtés[2]}  est-il rectangle ?`;
     feedback.textContent = "";
   }
 
