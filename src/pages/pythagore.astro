@@ -86,6 +86,110 @@ import '../styles/global.css';
         </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="pythagorasQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startPythagQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 triangles !
+  </button>
+
+  <div id="pythagorasQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="pythagorasEnonce" style="font-size: 1.3rem; font-weight: bold; line-height: 1.4em;"></p>
+    
+    <div style="margin: 1rem 0; text-align: center;">
+      <label for="pythagorasInput" style="font-weight: 600; font-size: 1.1rem;">BC = </label>
+      <input id="pythagorasInput" type="text" placeholder="?" style="width: 80px; padding: 0.4rem; font-size: 1.1rem; text-align: center; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+
+    <button id="validerPythagoras" style="background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+
+    <p id="pythagorasFeedback" style="margin-top: 1.2rem; font-size: 1.1rem; font-weight: 600; min-height: 2em;"></p>
+    <p id="pythagorasScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+
+    <button id="replayPythagoras" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const triplets = [
+    [3,4,5],[5,12,13],[6,8,10],[7,24,25],[8,15,17],[9,12,15],
+    [9,40,41],[10,24,26],[12,16,20],[12,35,37],[14,48,50],[15,20,25],
+    [15,36,39],[16,30,34],[18,24,30],[20,21,29],[20,48,52],[21,28,35],
+    [24,32,40],[27,36,45],[28,45,53],[30,40,50],[33,44,55],[36,48,60],
+    [39,52,65],[40,42,58],[48,55,73],[48,64,80],[60,63,87],[65,72,97]
+  ];
+
+  function shuffle(a) {
+    return a.sort(() => Math.random() - 0.5);
+  }
+
+  let list = [], idx = 0, score = 0;
+  const startBtn = document.getElementById("startPythagQuiz");
+  const container = document.getElementById("pythagorasQuizContainer");
+  const enonce = document.getElementById("pythagorasEnonce");
+  const input = document.getElementById("pythagorasInput");
+  const valider = document.getElementById("validerPythagoras");
+  const feedback = document.getElementById("pythagorasFeedback");
+  const scoreFinal = document.getElementById("pythagorasScoreFinal");
+  const replayBtn = document.getElementById("replayPythagoras");
+
+  function showQuestion() {
+    const [a,b,c] = list[idx];
+    enonce.textContent = `Le triangle ABC est rectangle en A, AB = ${a} et AC = ${b}. Quelle est la longueur de BC ?`;
+    input.value = "";
+    feedback.textContent = "";
+  }
+
+  startBtn.addEventListener("click", () => {
+    list = shuffle(triplets).slice(0,5);
+    idx = 0; score = 0;
+    scoreFinal.textContent = "";
+    replayBtn.style.display = "none";
+    container.style.display = "block";
+    showQuestion();
+  });
+
+  valider.addEventListener("click", () => {
+    const [a,b,c] = list[idx];
+    const val = parseInt(input.value.trim());
+    if (isNaN(val)) {
+      feedback.textContent = "⚠️ Tape un nombre entier.";
+      feedback.style.color = "#d97706";
+      return;
+    }
+
+    if (val === c) {
+      feedback.textContent = "✅ Correct !";
+      feedback.style.color = "#198754";
+      score++;
+    } else {
+      feedback.textContent = `❌ Non : BC = ${c}.`;
+      feedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < list.length) {
+        showQuestion();
+      } else {
+        const msg = score === 5 ? "🎉 Parfait !" :
+                    score >= 4 ? "👍 Presque !" :
+                    "❌ À revoir !";
+        scoreFinal.textContent = `Score : ${score}/5 – ${msg}`;
+        replayBtn.style.display = "inline-block";
+      }
+    }, 800);
+  });
+
+  replayBtn.addEventListener("click", () => startBtn.click());
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/hypotenuse.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/hypotenuse2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
@@ -157,6 +261,118 @@ import '../styles/global.css';
         </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="triRectQuizWrapper2" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 550px; text-align: center;">
+  <button id="startTriRectQuiz2" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 triangles !
+  </button>
+
+  <div id="triRectQuizContainer2" style="margin-top: 2rem; display: none;">
+    <p id="triRectQuestion2" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <div style="margin-top: 1rem;">
+      <label style="font-weight: 600;">AC = </label>
+      <input id="triRectAnswer2" type="text" placeholder="?" style="width: 80px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px;" />
+    </div>
+    <button id="validerTriRect2" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="triRectFeedback2" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="triRectScoreFinal2" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayTriRectQuiz2" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const triplets = [
+    [3, 4, 5], [5, 12, 13], [7, 24, 25], [9, 40, 41],
+    [11, 60, 61], [12, 35, 37], [8, 15, 17], [20, 21, 29],
+    [6, 8, 10], [10, 24, 26], [16, 63, 65], [33, 56, 65],
+    [48, 55, 73], [36, 77, 85], [65, 72, 97]
+  ];
+
+  let questions = [], current = 0, score = 0;
+  const btnStart = document.getElementById("startTriRectQuiz2");
+  const container = document.getElementById("triRectQuizContainer2");
+  const txtQuestion = document.getElementById("triRectQuestion2");
+  const inputAnswer = document.getElementById("triRectAnswer2");
+  const btnValider = document.getElementById("validerTriRect2");
+  const feedback = document.getElementById("triRectFeedback2");
+  const scoreFinal = document.getElementById("triRectScoreFinal2");
+  const btnReplay = document.getElementById("replayTriRectQuiz2");
+
+  function generateQuestions() {
+    const selected = [];
+    while (selected.length < 5) {
+      const [a, b, c] = triplets[Math.floor(Math.random() * triplets.length)];
+      selected.push({ AB: a, AC: b, BC: c });
+    }
+    return selected;
+  }
+
+  function showQuestion() {
+    const q = questions[current];
+    txtQuestion.textContent = `Le triangle ABC est rectangle en A, AB = ${q.AB} et BC = ${q.BC}. Quelle est la longueur de AC ?`;
+    feedback.textContent = "";
+    inputAnswer.value = "";
+  }
+
+  btnStart.addEventListener("click", () => {
+    questions = generateQuestions();
+    current = 0;
+    score = 0;
+    scoreFinal.textContent = "";
+    btnReplay.style.display = "none";
+    container.style.display = "block";
+    showQuestion();
+  });
+
+  btnValider.addEventListener("click", () => {
+    const q = questions[current];
+    const reponse = parseInt(inputAnswer.value.trim());
+    if (isNaN(reponse)) {
+      feedback.textContent = "⚠️ Merci d’entrer une valeur entière.";
+      feedback.style.color = "#d97706";
+      return;
+    }
+
+    if (reponse === q.AC) {
+      feedback.textContent = "✅ Correct !";
+      feedback.style.color = "#198754";
+      score++;
+    } else {
+      feedback.textContent = `❌ Mauvaise réponse. AC = ${q.AC}`;
+      feedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      current++;
+      if (current < 5) {
+        showQuestion();
+      } else {
+        let mention = score === 5 ? "🎉 Parfait !" :
+                      score >= 4 ? "👍 Presque !" :
+                      "❌ À revoir !";
+        scoreFinal.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 800);
+  });
+
+  btnReplay.addEventListener("click", () => {
+    questions = generateQuestions();
+    current = 0;
+    score = 0;
+    scoreFinal.textContent = "";
+    btnReplay.style.display = "none";
+    showQuestion();
+  });
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/angledroit.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/angledroit2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
@@ -303,6 +519,125 @@ import '../styles/global.css';
         </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="triangleCheckerWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 550px; text-align: center;">
+  <button id="startTriangleChecker" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 triangles !
+  </button>
+
+  <div id="triangleCheckerContainer" style="margin-top: 2rem; display: none;">
+    <p id="triangleQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <div style="margin: 1rem 0; display: flex; justify-content: center; gap: 1rem;">
+      <button class="triangleAnswerBtn" data-answer="oui" style="padding: 0.6rem 1.2rem; font-size: 1rem; background-color: #10b981; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        ✅ Oui
+      </button>
+      <button class="triangleAnswerBtn" data-answer="non" style="padding: 0.6rem 1.2rem; font-size: 1rem; background-color: #ef4444; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        ❌ Non
+      </button>
+    </div>
+    <p id="triangleFeedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="triangleScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayTriangleChecker" style="display: none; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const triplets = [
+    [13, 14, 15], [17, 15, 8], [9, 40, 41], [28, 45, 53], [20, 21, 29], [11, 60, 61],
+    [33, 56, 65], [16, 63, 65], [36, 77, 85], [39, 80, 89], [65, 72, 97]
+  ];
+
+  function melange(liste) {
+    for (let i = liste.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [liste[i], liste[j]] = [liste[j], liste[i]];
+    }
+    return liste;
+  }
+
+  const startBtn = document.getElementById("startTriangleChecker");
+  const container = document.getElementById("triangleCheckerContainer");
+  const question = document.getElementById("triangleQuestion");
+  const feedback = document.getElementById("triangleFeedback");
+  const finalScore = document.getElementById("triangleScoreFinal");
+  const replayBtn = document.getElementById("replayTriangleChecker");
+
+  let triangles = [], idx = 0, score = 0;
+
+  function isRectangle(a, b, c) {
+    return a * a + b * b === c * c || a * a + c * c === b * b || b * b + c * c === a * a;
+  }
+
+  function nouvelleSerie() {
+    triangles = [];
+    idx = 0;
+    score = 0;
+    feedback.textContent = "";
+    finalScore.textContent = "";
+    replayBtn.style.display = "none";
+
+    const copies = [...triplets];
+    melange(copies);
+    for (let i = 0; i < 5; i++) {
+      const t = [...copies[i]];
+      melange(t);
+      const rectangle = isRectangle(...t);
+      triangles.push({ côtés: t, rectangle });
+    }
+    afficherQuestion();
+  }
+
+  function afficherQuestion() {
+    const t = triangles[idx];
+    question.textContent = `Triangle avec côtés AB = ${t.côtés[0]} ; AC = ${t.côtés[1]} ; BC = ${t.côtés[2]} – Est-il rectangle ?`;
+    feedback.textContent = "";
+  }
+
+  document.querySelectorAll(".triangleAnswerBtn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const reponse = btn.dataset.answer;
+      const t = triangles[idx];
+
+      const correcte = t.rectangle ? "oui" : "non";
+      if (reponse === correcte) {
+        feedback.textContent = "✅ Bonne réponse !";
+        feedback.style.color = "#198754";
+        score++;
+      } else {
+        feedback.textContent = `❌ Non, ce triangle est ${t.rectangle ? "rectangle" : "non rectangle"}.`;
+        feedback.style.color = "#dc2626";
+      }
+
+      setTimeout(() => {
+        idx++;
+        if (idx < 5) {
+          afficherQuestion();
+        } else {
+          const mention = score === 5 ? "🎉 Parfait !" :
+                          score >= 4 ? "👍 Presque !" :
+                          "❌ À revoir !";
+          finalScore.textContent = `Score : ${score}/5 – ${mention}`;
+          replayBtn.style.display = "inline-block";
+        }
+      }, 1000);
+    });
+  });
+
+  startBtn.addEventListener("click", () => {
+    container.style.display = "block";
+    nouvelleSerie();
+  });
+
+  replayBtn.addEventListener("click", () => {
+    nouvelleSerie();
+  });
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/rectangle.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/rectangle2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
