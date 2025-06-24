@@ -73,6 +73,105 @@ import '../styles/global.css';
 </section>
 
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="freqNotesWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startFreqNotes" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 séries de notes !
+  </button>
+
+  <div id="freqNotesContainer" style="margin-top: 2rem; display: none;">
+    <p id="freqNotesQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <p id="freqNotesListe" style="font-size: 1.2rem; margin-bottom: 1rem;"></p>
+    <div>
+      <label for="freqNotesInput" style="font-weight: bold;">Réponse :</label>
+      <input id="freqNotesInput" type="text" style="width: 140px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 9px; margin-left: 0.5rem;" placeholder="réponse décimale" />
+    </div>
+    <button id="validerFreqNotes" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="freqNotesFeedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="freqNotesScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayFreqNotes" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const btnStart = document.getElementById("startFreqNotes");
+  const container = document.getElementById("freqNotesContainer");
+  const txtQuestion = document.getElementById("freqNotesQuestion");
+  const txtListe = document.getElementById("freqNotesListe");
+  const btnValider = document.getElementById("validerFreqNotes");
+  const input = document.getElementById("freqNotesInput");
+  const txtFeedback = document.getElementById("freqNotesFeedback");
+  const txtScore = document.getElementById("freqNotesScoreFinal");
+  const btnReplay = document.getElementById("replayFreqNotes");
+
+  let questions = [], idx = 0, score = 0;
+
+  function genererNotes() {
+    const notes = [];
+    for (let i = 0; i < 10; i++) {
+      notes.push(Math.floor(Math.random() * 21)); // 0 à 20 inclus
+    }
+    const inf10 = notes.filter(n => n < 10).length;
+    const freq = inf10 / 10;
+    return { notes, freq: freq.toFixed(1).replace('.', ',') };
+  }
+
+  function afficherQuestion() {
+    const q = questions[idx];
+    txtQuestion.textContent = `(${idx + 1}/5) Quelle est la fréquence des notes strictement inférieures à 10 ?`;
+    txtListe.textContent = `Notes : ${q.notes.join(' ; ')}`;
+    input.value = "";
+    txtFeedback.textContent = "";
+  }
+
+  btnValider.addEventListener("click", () => {
+    const userInput = input.value.trim().replace('.', ',');
+    const attendu = questions[idx].freq;
+    if (userInput === attendu) {
+      txtFeedback.textContent = "✅ Bonne réponse !";
+      txtFeedback.style.color = "#198754";
+      score++;
+    } else {
+      txtFeedback.textContent = `❌ Non, la bonne réponse était ${attendu}`;
+      txtFeedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        afficherQuestion();
+      } else {
+        const mention = score === 5 ? "🎉 Parfait !" :
+                        score >= 4 ? "🙂 Pas mal !" :
+                        "⚠️ À revoir...";
+        txtScore.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 900);
+  });
+
+  function commencerQuiz() {
+    questions = [];
+    for (let i = 0; i < 5; i++) questions.push(genererNotes());
+    idx = 0;
+    score = 0;
+    txtScore.textContent = "";
+    btnReplay.style.display = "none";
+    afficherQuestion();
+    container.style.display = "block";
+  }
+
+  btnStart.addEventListener("click", commencerQuiz);
+  btnReplay.addEventListener("click", commencerQuiz);
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/frequence1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (Coopmaths)</a></li>
           <li><a href="/docs/frequence2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
@@ -139,6 +238,107 @@ import '../styles/global.css';
     </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="moyenneQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startMoyenneQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 séries de notes !
+  </button>
+
+  <div id="moyenneQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="moyenneQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <p id="moyenneListe" style="font-size: 1.2rem; margin-bottom: 1rem;"></p>
+    <div>
+      <label for="moyenneInput" style="font-weight: bold;">Réponse :</label>
+      <input id="moyenneInput" type="text" style="width: 140px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px; margin-left: 0.5rem;" placeholder="réponse décimale" />
+    </div>
+    <button id="validerMoyenne" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="moyenneFeedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="moyenneScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayMoyenneQuiz" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const btnStart = document.getElementById("startMoyenneQuiz");
+  const container = document.getElementById("moyenneQuizContainer");
+  const txtQuestion = document.getElementById("moyenneQuestion");
+  const txtListe = document.getElementById("moyenneListe");
+  const btnValider = document.getElementById("validerMoyenne");
+  const input = document.getElementById("moyenneInput");
+  const txtFeedback = document.getElementById("moyenneFeedback");
+  const txtScore = document.getElementById("moyenneScoreFinal");
+  const btnReplay = document.getElementById("replayMoyenneQuiz");
+
+  let questions = [], idx = 0, score = 0;
+
+  function genererSerie() {
+    const nombres = [];
+    let somme = 0;
+    for (let i = 0; i < 5; i++) {
+      const n = Math.floor(Math.random() * 21);
+      nombres.push(n);
+      somme += n;
+    }
+    const moyenne = (somme / 5).toFixed(1).replace('.', ',');
+    return { nombres, moyenne };
+  }
+
+  function afficherQuestion() {
+    const q = questions[idx];
+    txtQuestion.textContent = `(${idx + 1}/5) Quelle est la moyenne des 5 notes suivantes ?`;
+    txtListe.textContent = `Notes : ${q.nombres.join(' ; ')}`;
+    input.value = "";
+    txtFeedback.textContent = "";
+  }
+
+  btnValider.addEventListener("click", () => {
+    const userInput = input.value.trim().replace('.', ',');
+    const attendu = questions[idx].moyenne;
+    if (userInput === attendu) {
+      txtFeedback.textContent = "✅ Bonne réponse !";
+      txtFeedback.style.color = "#198754";
+      score++;
+    } else {
+      txtFeedback.textContent = `❌ Non, la bonne réponse était ${attendu}`;
+      txtFeedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        afficherQuestion();
+      } else {
+        const mention = score === 5 ? "🎉 Parfait !" :
+                        score >= 4 ? "🙂 Pas mal !" :
+                        "⚠️ À revoir...";
+        txtScore.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 900);
+  });
+
+  function commencerQuiz() {
+    questions = [];
+    for (let i = 0; i < 5; i++) questions.push(genererSerie());
+    idx = 0;
+    score = 0;
+    txtScore.textContent = "";
+    btnReplay.style.display = "none";
+    afficherQuestion();
+    container.style.display = "block";
+  }
+
+  btnStart.addEventListener("click", commencerQuiz);
+  btnReplay.addEventListener("click", commencerQuiz);
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/moyenne1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/moyenne2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
@@ -206,6 +406,113 @@ import '../styles/global.css';
     </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="medianQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startMedianQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 séries de notes !
+  </button>
+
+  <div id="medianQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="medianQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <p id="medianListe" style="font-size: 1.2rem; margin-bottom: 1rem;"></p>
+    <div>
+      <label for="medianInput" style="font-weight: bold;">Réponse :</label>
+      <input id="medianInput" type="text" style="width: 80px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px; margin-left: 0.5rem;" placeholder="ex : 13" />
+    </div>
+    <button id="validerMedian" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="medianFeedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="medianScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayMedianQuiz" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const btnStart = document.getElementById("startMedianQuiz");
+  const container = document.getElementById("medianQuizContainer");
+  const txtQuestion = document.getElementById("medianQuestion");
+  const txtListe = document.getElementById("medianListe");
+  const btnValider = document.getElementById("validerMedian");
+  const input = document.getElementById("medianInput");
+  const txtFeedback = document.getElementById("medianFeedback");
+  const txtScore = document.getElementById("medianScoreFinal");
+  const btnReplay = document.getElementById("replayMedianQuiz");
+
+  let questions = [], idx = 0, score = 0;
+
+  function genererSerie() {
+    const nombres = [];
+    for (let i = 0; i < 5; i++) {
+      nombres.push(Math.floor(Math.random() * 21));
+    }
+    const copie = [...nombres].sort((a, b) => a - b);
+    const mediane = copie[2]; // position centrale
+    return { nombres: shuffle(nombres), mediane };
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function afficherQuestion() {
+    const q = questions[idx];
+    txtQuestion.textContent = `(${idx + 1}/5) Quelle est la médiane des 5 notes suivantes ?`;
+    txtListe.textContent = `Valeurs : ${q.nombres.join(' ; ')}`;
+    input.value = "";
+    txtFeedback.textContent = "";
+  }
+
+  btnValider.addEventListener("click", () => {
+    const userInput = parseInt(input.value.trim());
+    const attendu = questions[idx].mediane;
+    if (userInput === attendu) {
+      txtFeedback.textContent = "✅ Correct !";
+      txtFeedback.style.color = "#198754";
+      score++;
+    } else {
+      txtFeedback.textContent = `❌ Non, la bonne réponse était ${attendu}`;
+      txtFeedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        afficherQuestion();
+      } else {
+        const mention = score === 5 ? "🎉 Parfait !" :
+                        score >= 4 ? "🙂 Pas mal !" :
+                        "⚠️ À revoir...";
+        txtScore.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 900);
+  });
+
+  function commencerQuiz() {
+    questions = [];
+    for (let i = 0; i < 5; i++) questions.push(genererSerie());
+    idx = 0;
+    score = 0;
+    txtScore.textContent = "";
+    btnReplay.style.display = "none";
+    afficherQuestion();
+    container.style.display = "block";
+  }
+
+  btnStart.addEventListener("click", commencerQuiz);
+  btnReplay.addEventListener("click", commencerQuiz);
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/mediane1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/mediane2.pdf" target="_blank" class="pdf-button">📘 Exercices variés (Sésamaths)</a></li>
@@ -273,6 +580,114 @@ import '../styles/global.css';
    </details>
 </section>
 <section class="training-links" data-title="Pour s’entraîner">
+
+<div id="rangeQuizWrapper" style="font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 600px; text-align: center;">
+  <button id="startRangeQuiz" style="font-size: 1.3rem; font-weight: bold; padding: 0.6rem 1.4rem; background-color: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🎲 Génère tes 5 séries de notes !
+  </button>
+
+  <div id="rangeQuizContainer" style="margin-top: 2rem; display: none;">
+    <p id="rangeQuestion" style="font-size: 1.4rem; font-weight: bold;"></p>
+    <p id="rangeListe" style="font-size: 1.2rem; margin-bottom: 1rem;"></p>
+    <div>
+      <label for="rangeInput" style="font-weight: bold;">Réponse :</label>
+      <input id="rangeInput" type="text" style="width: 80px; text-align: center; padding: 0.4rem; border: 1.5px solid #ccc; border-radius: 6px; margin-left: 0.5rem;" placeholder="ex : 13" />
+    </div>
+    <button id="validerRange" style="margin-top: 1rem; background-color: #4f46e5; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+      Valider
+    </button>
+    <p id="rangeFeedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: 600; min-height: 1.5em;"></p>
+    <p id="rangeScoreFinal" style="font-size: 1.3rem; font-weight: bold; margin-top: 2rem;"></p>
+    <button id="replayRangeQuiz" style="display: none; background-color: #10b981; color: white; border: none; padding: 0.5rem 1.3rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem;">
+      🔁 Rejouer une série !
+    </button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const btnStart = document.getElementById("startRangeQuiz");
+  const container = document.getElementById("rangeQuizContainer");
+  const txtQuestion = document.getElementById("rangeQuestion");
+  const txtListe = document.getElementById("rangeListe");
+  const btnValider = document.getElementById("validerRange");
+  const input = document.getElementById("rangeInput");
+  const txtFeedback = document.getElementById("rangeFeedback");
+  const txtScore = document.getElementById("rangeScoreFinal");
+  const btnReplay = document.getElementById("replayRangeQuiz");
+
+  let questions = [], idx = 0, score = 0;
+
+  function genererSerie() {
+    const nombres = [];
+    for (let i = 0; i < 5; i++) {
+      nombres.push(Math.floor(Math.random() * 21));
+    }
+    const min = Math.min(...nombres);
+    const max = Math.max(...nombres);
+    const etendue = max - min;
+    return { nombres: shuffle(nombres), etendue };
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function afficherQuestion() {
+    const q = questions[idx];
+    txtQuestion.textContent = `(${idx + 1}/5) Quelle est l'étendue de la série suivante ?`;
+    txtListe.textContent = `Valeurs : ${q.nombres.join(' ; ')}`;
+    input.value = "";
+    txtFeedback.textContent = "";
+  }
+
+  btnValider.addEventListener("click", () => {
+    const userInput = parseInt(input.value.trim());
+    const attendu = questions[idx].etendue;
+    if (userInput === attendu) {
+      txtFeedback.textContent = "✅ Correct !";
+      txtFeedback.style.color = "#198754";
+      score++;
+    } else {
+      txtFeedback.textContent = `❌ Non, la bonne réponse était ${attendu}`;
+      txtFeedback.style.color = "#dc2626";
+    }
+
+    setTimeout(() => {
+      idx++;
+      if (idx < 5) {
+        afficherQuestion();
+      } else {
+        const mention = score === 5 ? "🎉 Parfait !" :
+                        score >= 4 ? "🙂 Pas mal !" :
+                        "⚠️ À revoir...";
+        txtScore.textContent = `Score : ${score}/5 – ${mention}`;
+        btnReplay.style.display = "inline-block";
+      }
+    }, 900);
+  });
+
+  function commencerQuiz() {
+    questions = [];
+    for (let i = 0; i < 5; i++) questions.push(genererSerie());
+    idx = 0;
+    score = 0;
+    txtScore.textContent = "";
+    btnReplay.style.display = "none";
+    afficherQuestion();
+    container.style.display = "block";
+  }
+
+  btnStart.addEventListener("click", commencerQuiz);
+  btnReplay.addEventListener("click", commencerQuiz);
+})();
+</script>
+
+
         <ul class="link-buttons">
           <li><a href="/docs/etendue1.pdf" target="_blank" class="pdf-button">📄 Fiche d'exercices corrigés (MathsMentales)</a></li>
           <li><a href="/docs/etendue2etmediane.pdf" target="_blank" class="pdf-button">📘 Exercices variés avec médianes(Sésamaths)</a></li>
