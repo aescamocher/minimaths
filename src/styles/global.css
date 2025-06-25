@@ -342,3 +342,39 @@ details summary::after {
     color: #ffb733; /* légèrement plus clair pour ressortir mieux en sombre */
   }
 }
+.decorated-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0 2rem;
+}
+
+.decorated-title__text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.decorated-title__line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--line-color);
+  max-width: 150px;
+}
+
+/* Couleurs adaptatives clair/sombre */
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: #222;
+    --line-color: #ccc;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #f0f0f0;
+    --line-color: #555;
+  }
+}

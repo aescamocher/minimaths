@@ -15,9 +15,12 @@ import '../styles/global.css';
   <body>
     <Header />
     <main class="container">
-      <section style="text-align: center;">
-  <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">📚 Thèmes</h3>
-</section>
+<div class="decorated-title">
+  <span class="decorated-title__line"></span>
+  <span class="decorated-title__text">📚 Thèmes</span>
+  <span class="decorated-title__line"></span>
+</div>
+
 
 <ThemeButton name="📐 Angles" link="/angles" />
 <ThemeButton name="➕ Arithmétique 🔥" link="/arithmetique" />
@@ -34,13 +37,15 @@ import '../styles/global.css';
 <ThemeButton name="🔺 Trigonométrie" link="/trigonometre" />
 
 <!-- Séparation visuelle -->
-<hr style="margin: 3rem auto 2rem; border: none; height: 2px; background-color: #ccc; width: 60%;" />
+<div class="decorated-title">
+  <span class="decorated-title__line"></span>
+  <span class="decorated-title__text">📁 Ressources</span>
+  <span class="decorated-title__line"></span>
+</div>
 
-<!-- Section Ressources -->
-<section style="text-align: center;">
-  <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">📁 Ressources</h3>
+
   <ThemeButton name="🌐 Sites utiles" link="/ressources/sites-utiles" />
-</section>
+
 
     
 
